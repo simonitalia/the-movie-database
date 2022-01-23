@@ -11,6 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TheMovieDatabase">
+
+        <meta-data
+            android:name="org.api.themoviedb.API_V_3_KEY"
+            android:value="${TMDB_API_V_3_KEY}" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
