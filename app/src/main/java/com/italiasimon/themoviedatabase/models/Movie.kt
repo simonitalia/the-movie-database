@@ -1,4 +1,4 @@
-package com.italiasimon.themoviedatabase.Models
+package com.italiasimon.themoviedatabase.models
 
 import com.google.gson.annotations.SerializedName
 
