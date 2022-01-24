@@ -47,12 +47,9 @@ class MainFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // observer MainViewModel live data changes
+        // observe MainViewModel live data changes
         viewModel.movies.observe(viewLifecycleOwner, { movies ->
             Log.i(TAG, "viewModel.movies list updated")
         })
     }
-
-
-
 }
