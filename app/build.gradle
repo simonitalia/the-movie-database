@@ -27,6 +27,13 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+        //enable api key to be accessible from classes
+        applicationVariants.all { variant ->
+            variant.buildConfigField "String",
+                    "TMDB_API_V_3_KEY",
+                    "\""+getApiKey()+"\""
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
