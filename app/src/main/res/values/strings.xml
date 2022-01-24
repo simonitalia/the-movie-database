@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">The Movie Database</string>
+
+    <!-- Main Fragment -->
+    <string name="success_fetch_movies">Movies successfully fetched!</string>
+    <string name="error_fetch_movies">Failed to fetch movies!</string>
+
+    <!-- Snackbar Actions -->
+    <string name="snackbar_action_try_again">TRY AGAIN</string>
+
 </resources>

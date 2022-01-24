@@ -1,21 +1,17 @@
 package com.italiasimon.themoviedatabase.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
 import com.italiasimon.themoviedatabase.R
 import com.italiasimon.themoviedatabase.databinding.FragmentMainBinding
 
 class MainFragment: Fragment() {
-
-    companion object {
-        private const val TAG = "MainFragment"
-    }
 
     // lazily initialize MainViewModel using .Factory to pass in application parameter
     private val viewModel: MainViewModel by lazy {
@@ -47,9 +43,30 @@ class MainFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // observe MainViewModel live data changes
-        viewModel.movies.observe(viewLifecycleOwner, { movies ->
-            Log.i(TAG, "viewModel.movies list updated")
+        // observe view model live data changes
+
+        // movies
+        viewModel.movies.observe(viewLifecycleOwner, {
+            Snackbar.make(
+                view,
+                getString(R.string.success_fetch_movies),
+                Snackbar.LENGTH_SHORT
+            ).show()
+        })
+
+        // showError
+        viewModel.showError.observe(viewLifecycleOwner, { showError ->
+            if (showError) {
+                val snack = Snackbar.make(
+                    view,
+                    getString(R.string.error_fetch_movies),
+                    Snackbar.LENGTH_INDEFINITE
+                )
+                snack.setAction(getString(R.string.snackbar_action_try_again)) {
+                    viewModel.getPopularMovies()
+                }
+                snack.show()
+            }
         })
     }
 }

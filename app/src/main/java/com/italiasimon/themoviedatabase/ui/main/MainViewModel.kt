@@ -33,20 +33,33 @@ class MainViewModel(
     val movies: LiveData<List<Movie>>
         get() = _movies
 
+    private val _showError = MutableLiveData<Boolean>()
+    val showError: LiveData<Boolean>
+        get() = _showError
+
     init {
         getPopularMovies()
     }
 
-    private fun getPopularMovies(page: Int = 1)  {
+    fun getPopularMovies(page: Int = 1)  {
 
         repository.getPopularMovies(
             page,
             onSuccess =  {
-                _movies.value = it
+                onPopularMoviesUpdated(it)
             },
             onError = {
                 Log.i(TAG, it)
             }
         )
+    }
+
+    private fun onPopularMoviesUpdated(movies: List<Movie>) {
+        _movies.value = movies
+        _showError.value = false
+    }
+
+    private fun onError() {
+        _showError.value = true
     }
 }
