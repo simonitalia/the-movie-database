@@ -1,14 +1,12 @@
-package com.italiasimon.themoviedatabase
+package com.italiasimon.themoviedatabase.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.italiasimon.themoviedatabase.repository.MoviesRepository
+import com.italiasimon.themoviedatabase.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-//        MoviesRepository.getPopularMovies()
     }
 }

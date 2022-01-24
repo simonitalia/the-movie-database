@@ -35,12 +35,19 @@ android {
                     "\""+getApiKey()+"\""
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+
+    // enable view binding
+    buildFeatures {
+        dataBinding true
     }
 }
 
@@ -71,6 +78,10 @@ dependencies {
     // https://github.com/bumptech/glide
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     kapt 'com.github.bumptech.glide:compiler:4.12.0'
+
+    // Fragment Navigation
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
 
     // Testing
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

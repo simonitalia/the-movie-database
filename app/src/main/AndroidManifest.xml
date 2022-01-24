@@ -17,7 +17,7 @@
             android:value="${TMDB_API_V_3_KEY}" />
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.italiasimon.themoviedatabase.ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
