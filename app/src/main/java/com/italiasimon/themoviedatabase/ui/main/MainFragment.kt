@@ -1,6 +1,7 @@
 package com.italiasimon.themoviedatabase.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,10 @@ import com.italiasimon.themoviedatabase.R
 import com.italiasimon.themoviedatabase.databinding.FragmentMainBinding
 
 class MainFragment: Fragment() {
+
+    companion object {
+        private const val TAG = "MainFragment"
+    }
 
     // lazily initialize MainViewModel using .Factory to pass in application parameter
     private val viewModel: MainViewModel by lazy {
@@ -37,6 +42,15 @@ class MainFragment: Fragment() {
         binding.viewModel = viewModel
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // observer MainViewModel live data changes
+        viewModel.movies.observe(viewLifecycleOwner, { movies ->
+            Log.i(TAG, "viewModel.movies list updated")
+        })
     }
 
 
