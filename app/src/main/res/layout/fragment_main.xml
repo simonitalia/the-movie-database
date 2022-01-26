@@ -13,7 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
@@ -34,7 +34,8 @@
             android:text="@string/most_popular_movies" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/popular_movies_list"
+            android:id="@+id/movie_recycler_view"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/layout_margin_8dp"

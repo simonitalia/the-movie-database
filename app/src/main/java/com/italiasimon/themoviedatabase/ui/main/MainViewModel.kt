@@ -1,7 +1,6 @@
 package com.italiasimon.themoviedatabase.ui.main
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import com.italiasimon.themoviedatabase.models.Movie
 import com.italiasimon.themoviedatabase.repository.MoviesRepository
@@ -47,9 +46,10 @@ class MainViewModel(
             page,
             onSuccess =  {
                 onPopularMoviesUpdated(it)
+                showError(false)
             },
             onError = {
-                Log.i(TAG, it)
+                showError(true)
             }
         )
     }
@@ -59,7 +59,7 @@ class MainViewModel(
         _showError.value = false
     }
 
-    private fun onError() {
-        _showError.value = true
+    private fun showError(value: Boolean) {
+        _showError.value = value
     }
 }
