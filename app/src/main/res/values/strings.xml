@@ -4,6 +4,8 @@
     <!-- Main Fragment -->
     <string name="success_fetch_movies">Movies successfully fetched!</string>
     <string name="error_fetch_movies">Failed to fetch movies!</string>
+    <string name="popular">Popular</string>
+    <string name="most_popular_movies">Most Popular Movies!</string>
 
     <!-- Snackbar Actions -->
     <string name="snackbar_action_try_again">TRY AGAIN</string>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Layout Margin -->
+    <dimen name="layout_margin_16dp">16dp</dimen>
+    <dimen name="layout_margin_8dp">8dp</dimen>
+
+    <!-- Layout Padding -->
+    <dimen name="layout_padding_16dp">16dp</dimen>
+
+</resources>

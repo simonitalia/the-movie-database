@@ -10,9 +10,38 @@
             type="com.italiasimon.themoviedatabase.ui.main.MainViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layout_margin_16dp"
+            android:layout_marginTop="@dimen/layout_margin_16dp"
+            android:layout_marginEnd="@dimen/layout_margin_16dp"
+            android:text="@string/popular"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layout_margin_16dp"
+            android:layout_marginEnd="@dimen/layout_margin_16dp"
+            android:text="@string/most_popular_movies" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/popular_movies_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_margin_8dp"
+            android:clipToPadding="false"
+            android:paddingStart="@dimen/layout_padding_16dp"
+            android:paddingEnd="@dimen/layout_padding_16dp"
+            tools:listitem="@layout/item_movie"/>
+
+    </LinearLayout>
 </layout>
