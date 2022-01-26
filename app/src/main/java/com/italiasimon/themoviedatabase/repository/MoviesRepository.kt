@@ -31,7 +31,7 @@ class MoviesRepository {
     fun getPopularMovies(
         page: Int = 1,
         onSuccess: (movies: List<Movie>) -> Unit,
-        onError: (message: String) -> Unit
+        onError: () -> Unit
     ) {
 
         api.getPopularMovies(page = page)
@@ -45,21 +45,19 @@ class MoviesRepository {
 
                         // on successful fetch
                         if (responseBody != null) {
-                            Log.i(TAG, "Success: Popular movies fetched!")
                             onSuccess(responseBody.movies)
-
 
                         // on unsuccessful fetch
                         } else {
-                            val error = "Error: Popular movies not fetched!"
-                            onError(error)
+                            onError()
                         }
                     }
                 }
 
                 // on fetch error
                 override fun onFailure(call: Call<TmdbGetMoviesResponse>, t: Throwable) {
-                    Log.e(TAG, "Error: onFailure", t)
+                    Log.e(TAG, "Error: onFailure: ${t.localizedMessage}", t)
+                    onError()
                 }
             })
     }
