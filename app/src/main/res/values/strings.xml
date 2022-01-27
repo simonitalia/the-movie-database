@@ -7,7 +7,13 @@
     <string name="popular">Popular</string>
     <string name="most_popular_movies">Most Popular Movies!</string>
 
+    <!-- Main Fragment Options Menu -->
+    <string name="main_options_sort_a_z">Sort A-Z</string>
+    <string name="main_options_sort_z_a">Sort Z-A</string>
+
     <!-- Snackbar Actions -->
     <string name="snackbar_action_try_again">TRY AGAIN</string>
+
+
 
 </resources>

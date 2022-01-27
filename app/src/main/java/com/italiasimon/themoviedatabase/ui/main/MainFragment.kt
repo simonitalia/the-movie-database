@@ -1,9 +1,7 @@
 package com.italiasimon.themoviedatabase.ui.main
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -48,6 +46,7 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
         binding.viewModel = viewModel
         binding.movieRecyclerView.adapter = this.adapter
 
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -96,4 +95,29 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
         TODO("Not yet implemented")
         // navigate to item detail
     }
+
+    /*
+     * Options Menu setup
+     */
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main_options, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.sort_a_z -> {
+            viewModel.movies.value?.sortedBy { movie ->
+                movie.title }
+           true
+        }
+
+        R.id.sort_z_a -> {
+            viewModel.movies.value?.sortedByDescending { movie ->
+                movie.title }
+            true
+        }
+
+        else -> super.onOptionsItemSelected(item)
+    }
+
 }
