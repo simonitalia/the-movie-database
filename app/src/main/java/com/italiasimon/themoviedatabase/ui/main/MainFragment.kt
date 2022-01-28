@@ -62,8 +62,8 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
         // observe view model live data changes
 
         // movies
-        viewModel.movies.observe(viewLifecycleOwner, { movies ->
-            movies?.let {
+        viewModel.movies.observe(viewLifecycleOwner, {
+            it?.let { movies ->
                 Snackbar.make(
                     view,
                     getString(R.string.success_fetch_movies),
@@ -71,7 +71,7 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
                 ).show()
 
                 // update list
-                adapter.submitList(it)
+                onMoviesUpdated(movies)
             }
         })
 
@@ -104,20 +104,21 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
         inflater.inflate(R.menu.main_options, menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId)  {
         R.id.sort_a_z -> {
-            viewModel.movies.value?.sortedBy { movie ->
-                movie.title }
-           true
-        }
-
-        R.id.sort_z_a -> {
-            viewModel.movies.value?.sortedByDescending { movie ->
-                movie.title }
+            viewModel.sortMovies(true)
             true
         }
 
-        else -> super.onOptionsItemSelected(item)
+        R.id.sort_z_a -> {
+            viewModel.sortMovies(false)
+            true
+        }
+
+        else ->  super.onOptionsItemSelected(item)
     }
 
+    private fun onMoviesUpdated(movies: List<Movie>) {
+        adapter.submitList(movies)
+    }
 }

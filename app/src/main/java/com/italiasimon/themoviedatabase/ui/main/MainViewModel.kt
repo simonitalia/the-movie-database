@@ -28,9 +28,16 @@ class MainViewModel(
 
     }
 
+    // original movies list fetched from repo
     private val _movies = MutableLiveData<List<Movie>>()
     val movies: LiveData<List<Movie>>
         get() = _movies
+
+    //sorted movie list
+//    private val _sortedMovies = MutableLiveData<List<Movie>>()
+//    val sortedMovies: LiveData<List<Movie>>
+//        get() = _sortedMovies
+
 
     private val _showError = MutableLiveData<Boolean>()
     val showError: LiveData<Boolean>
@@ -61,5 +68,17 @@ class MainViewModel(
 
     private fun showError(value: Boolean) {
         _showError.value = value
+    }
+
+    fun sortMovies(ascending: Boolean) = when (ascending) {
+
+        // sort ascending order
+        true ->
+        _movies.value = _movies.value?.sortedBy { movie ->
+            movie.title }
+
+        // sort descending order
+        else -> _movies.value = _movies.value?.sortedByDescending { movie ->
+            movie.title }
     }
 }
