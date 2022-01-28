@@ -12,16 +12,17 @@
     </data>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="128dp"
-        android:layout_height="172dp"
-        android:layout_marginEnd="@dimen/layout_margin_8dp"
-        app:cardCornerRadius="4dp">
+        android:layout_width="192dp"
+        android:layout_height="258dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        app:cardCornerRadius="10dp">
 
         <ImageView
             android:id="@+id/item_movie_poster"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:posterImage="@{movie.posterPath}"/>
+            app:posterImage="@{movie.posterPath}" />
 
     </androidx.cardview.widget.CardView>
 </layout>
