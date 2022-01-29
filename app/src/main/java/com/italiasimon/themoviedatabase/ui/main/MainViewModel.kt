@@ -28,16 +28,16 @@ class MainViewModel(
 
     }
 
+    enum class TmdbApiStatus { LOADING, ERROR, DONE }
+
+    private val _apiStatus = MutableLiveData<TmdbApiStatus>()
+    val apiStatus: LiveData<TmdbApiStatus>
+        get() = _apiStatus
+
     // original movies list fetched from repo
     private val _movies = MutableLiveData<List<Movie>>()
     val movies: LiveData<List<Movie>>
         get() = _movies
-
-    //sorted movie list
-//    private val _sortedMovies = MutableLiveData<List<Movie>>()
-//    val sortedMovies: LiveData<List<Movie>>
-//        get() = _sortedMovies
-
 
     private val _showError = MutableLiveData<Boolean>()
     val showError: LiveData<Boolean>
@@ -48,14 +48,17 @@ class MainViewModel(
     }
 
     fun getPopularMovies(page: Int = 1)  {
+        _apiStatus.value = TmdbApiStatus.LOADING
 
         repository.getPopularMovies(
             page,
             onSuccess =  {
+                _apiStatus.value = TmdbApiStatus.DONE
                 onPopularMoviesUpdated(it)
                 showError(false)
             },
             onError = {
+                _apiStatus.value = TmdbApiStatus.ERROR
                 showError(true)
             }
         )

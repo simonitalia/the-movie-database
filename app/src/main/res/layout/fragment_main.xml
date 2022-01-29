@@ -10,14 +10,41 @@
             type="com.italiasimon.themoviedatabase.ui.main.MainViewModel" />
     </data>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/movie_recycler_view"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="2dp"
-        android:layout_marginEnd="2dp"
-        android:gravity="center"
-        tools:listitem="@layout/item_movie"/>
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/activity_main_image_of_the_day_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/movie_recycler_view"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"
+                android:gravity="center"
+                tools:listitem="@layout/item_movie"/>
+
+            <ProgressBar
+                android:id="@+id/progress_bar_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/purple_200"
+                app:tmdbApiStatus="@{viewModel.apiStatus}" />
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
