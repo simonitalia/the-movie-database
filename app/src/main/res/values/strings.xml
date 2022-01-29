@@ -10,11 +10,15 @@
     <!-- Main Fragment Options Menu -->
     <string name="main_options_sort_a_z">Sort A-Z</string>
     <string name="main_options_sort_z_a">Sort Z-A</string>
+    <string name="popular_movies">Popular Movies</string>
 
-    <!-- Snackbar Actions -->
+    <!-- Main Fragment Snackbar Actions -->
     <string name="snackbar_action_try_again">TRY AGAIN</string>
     <string name="description_text_movie_poster_card">movie poster card</string>
     <string name="description_text_movie_poster_image">movie poster image</string>
+
+    <!-- Detail Fragment -->
+
 
 
 </resources>
