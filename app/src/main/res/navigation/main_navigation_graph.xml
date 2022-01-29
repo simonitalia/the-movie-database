@@ -6,6 +6,5 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.italiasimon.themoviedatabase.ui.main.MainFragment"
-        android:label="@string/popular_movies" />
+        android:name="com.italiasimon.themoviedatabase.ui.main.MainFragment" />
 </navigation>

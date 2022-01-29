@@ -18,7 +18,6 @@
 
         <activity
             android:name="com.italiasimon.themoviedatabase.ui.main.MainActivity"
-            android:label="@string/popular_movies"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.italiasimon.themoviedatabase.tmdbClient.TmdbApi
 import com.italiasimon.themoviedatabase.ui.main.MainViewModel
 
 /**
@@ -31,7 +32,7 @@ fun bindPosterImage(imageView: ImageView, posterPath: String) {
         .into(imageView)
 }
 
-@BindingAdapter("tmdbApiStatus")
-fun bindApiStatus(progressBarView: ProgressBar, apiStatus: MainViewModel.TmdbApiStatus) {
-    progressBarView.visibility = if (apiStatus == MainViewModel.TmdbApiStatus.LOADING) View.VISIBLE else View.GONE
+@BindingAdapter("arg1", "arg2", requireAll = true)
+fun bindApiStatus(progressBarView: ProgressBar, apiStatusPopular: TmdbApi.ApiStatus, apiStatusTopRated: TmdbApi.ApiStatus) {
+    progressBarView.visibility = if (apiStatusPopular == TmdbApi.ApiStatus.LOADING || apiStatusTopRated == TmdbApi.ApiStatus.LOADING) View.VISIBLE else View.GONE
 }

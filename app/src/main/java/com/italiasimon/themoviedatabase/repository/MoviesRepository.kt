@@ -28,37 +28,104 @@ class MoviesRepository {
         api = retrofit.create(TmdbApi::class.java)
     }
 
-    fun getPopularMovies(
+    fun getMovies(
+        endpoint: TmdbApi.Endpoint,
         page: Int = 1,
         onSuccess: (movies: List<Movie>) -> Unit,
         onError: () -> Unit
     ) {
 
-        api.getPopularMovies(page = page)
-            .enqueue(object : Callback<TmdbGetMoviesResponse> {
-                override fun onResponse(
-                    call: Call<TmdbGetMoviesResponse>,
-                    response: Response<TmdbGetMoviesResponse>
-                ) {
-                    if (response.isSuccessful) {
-                        val responseBody = response.body()
+        when (endpoint) {
 
-                        // on successful fetch
-                        if (responseBody != null) {
-                            onSuccess(responseBody.movies)
+            // fetch popular movies
+            TmdbApi.Endpoint.POPULAR -> {
+                api.getPopularMovies(page = page)
+                    .enqueue(object : Callback<TmdbGetMoviesResponse> {
+                        override fun onResponse(
+                            call: Call<TmdbGetMoviesResponse>,
+                            response: Response<TmdbGetMoviesResponse>
+                        ) {
+                            if (response.isSuccessful) {
+                                val responseBody = response.body()
 
-                        // on unsuccessful fetch
-                        } else {
+                                // on successful fetch
+                                if (responseBody != null) {
+                                    onSuccess(responseBody.movies)
+
+                                // on unsuccessful fetch
+                                } else {
+                                    onError()
+                                }
+                            }
+                        }
+
+                        // on fetch error
+                        override fun onFailure(call: Call<TmdbGetMoviesResponse>, t: Throwable) {
+                            Log.e(TAG, "Error: onFailure: ${t.localizedMessage}", t)
                             onError()
                         }
-                    }
-                }
+                    })
+            }
 
-                // on fetch error
-                override fun onFailure(call: Call<TmdbGetMoviesResponse>, t: Throwable) {
-                    Log.e(TAG, "Error: onFailure: ${t.localizedMessage}", t)
-                    onError()
-                }
-            })
+            // fetch top rated
+            TmdbApi.Endpoint.TOP_RATED-> {
+                api.getTopRatedMovies(page = page)
+                    .enqueue(object : Callback<TmdbGetMoviesResponse> {
+                        override fun onResponse(
+                            call: Call<TmdbGetMoviesResponse>,
+                            response: Response<TmdbGetMoviesResponse>
+                        ) {
+                            if (response.isSuccessful) {
+                                val responseBody = response.body()
+
+                                // on successful fetch
+                                if (responseBody != null) {
+                                    onSuccess(responseBody.movies)
+
+                                    // on unsuccessful fetch
+                                } else {
+                                    onError()
+                                }
+                            }
+                        }
+
+                        // on fetch error
+                        override fun onFailure(call: Call<TmdbGetMoviesResponse>, t: Throwable) {
+                            Log.e(TAG, "Error: onFailure: ${t.localizedMessage}", t)
+                            onError()
+                        }
+                    })
+            }
+
+            // fetch upcoming
+            TmdbApi.Endpoint.UPCOMING-> {
+                api.getUpcomingMovies(page = page)
+                    .enqueue(object : Callback<TmdbGetMoviesResponse> {
+                        override fun onResponse(
+                            call: Call<TmdbGetMoviesResponse>,
+                            response: Response<TmdbGetMoviesResponse>
+                        ) {
+                            if (response.isSuccessful) {
+                                val responseBody = response.body()
+
+                                // on successful fetch
+                                if (responseBody != null) {
+                                    onSuccess(responseBody.movies)
+
+                                    // on unsuccessful fetch
+                                } else {
+                                    onError()
+                                }
+                            }
+                        }
+
+                        // on fetch error
+                        override fun onFailure(call: Call<TmdbGetMoviesResponse>, t: Throwable) {
+                            Log.e(TAG, "Error: onFailure: ${t.localizedMessage}", t)
+                            onError()
+                        }
+                    })
+            }
+        }
     }
 }

@@ -14,9 +14,8 @@
     <androidx.cardview.widget.CardView
         android:layout_width="192dp"
         android:layout_height="258dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="2dp"
-        app:cardCornerRadius="10dp">
+        android:layout_marginEnd="@dimen/layout_margin_8dp"
+        app:cardCornerRadius="@dimen/corner_radius_10dp">
 
         <ImageView
             android:id="@+id/item_movie_poster"

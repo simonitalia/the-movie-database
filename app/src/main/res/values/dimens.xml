@@ -8,4 +8,6 @@
     <!-- Layout Padding -->
     <dimen name="layout_padding_16dp">16dp</dimen>
 
+    <dimen name="corner_radius_10dp">10dp</dimen>
+
 </resources>

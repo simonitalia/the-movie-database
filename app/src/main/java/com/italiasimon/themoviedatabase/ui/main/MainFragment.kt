@@ -22,7 +22,8 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
     }
 
     // Adapter properties
-    private lateinit var adapter: MovieAdapter
+    private lateinit var popularMoviesAdapter: MovieAdapter
+    private lateinit var topRatedMoviesAdapter: MovieAdapter
     private lateinit var listener: MovieRecyclerViewAdapterListener
 
     // inflate layout using Data Binding, and bind fragment with this ui controller
@@ -39,12 +40,14 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
 
         // Recycler Adapter Item View listener
         listener = this
-        adapter = MovieAdapter(listener)
+        popularMoviesAdapter = MovieAdapter(listener)
+        topRatedMoviesAdapter = MovieAdapter(listener)
 
         // bindings
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-        binding.movieRecyclerView.adapter = this.adapter
+        binding.popularMoviesRecyclerView.adapter = this.popularMoviesAdapter
+        binding.topRatedMoviesRecyclerView.adapter = this.topRatedMoviesAdapter
 
         setHasOptionsMenu(true)
         return binding.root
@@ -61,30 +64,59 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
 
         // observe view model live data changes
 
-        // movies
-        viewModel.movies.observe(viewLifecycleOwner, {
+        // popular movies
+        viewModel.popularMovies.observe(viewLifecycleOwner, {
             it?.let { movies ->
                 Snackbar.make(
                     view,
-                    getString(R.string.success_fetch_movies),
+                    getString(R.string.success_fetch_popular_movies),
                     Snackbar.LENGTH_SHORT
                 ).show()
 
                 // update list
-                onMoviesUpdated(movies)
+                onMoviesUpdated(movies, MainViewModel.MovieListCategory.POPULAR)
             }
         })
 
-        // showError
-        viewModel.showError.observe(viewLifecycleOwner, { showError ->
+        // showError, popular movies
+        viewModel.showErrorPopular.observe(viewLifecycleOwner, { showError ->
             if (showError) {
                 val snack = Snackbar.make(
                     view,
-                    getString(R.string.error_fetch_movies),
+                    getString(R.string.error_fetch_popular_movies),
                     Snackbar.LENGTH_INDEFINITE
                 )
                 snack.setAction(getString(R.string.snackbar_action_try_again)) {
-                    viewModel.getPopularMovies()
+                    viewModel.getMovies(MainViewModel.MovieListCategory.ALL)
+                }
+                snack.show()
+            }
+        })
+
+        // popular movies
+        viewModel.topRatedMovies.observe(viewLifecycleOwner, {
+            it?.let { movies ->
+                Snackbar.make(
+                    view,
+                    getString(R.string.success_fetch_top_rated_movies),
+                    Snackbar.LENGTH_SHORT
+                ).show()
+
+                // update list
+                onMoviesUpdated(movies, MainViewModel.MovieListCategory.TOP_RATED)
+            }
+        })
+
+        // showError, top rated movies
+        viewModel.showErrorTopRated.observe(viewLifecycleOwner, { showError ->
+            if (showError) {
+                val snack = Snackbar.make(
+                    view,
+                    getString(R.string.error_fetch_top_rated_movies),
+                    Snackbar.LENGTH_INDEFINITE
+                )
+                snack.setAction(getString(R.string.snackbar_action_try_again)) {
+                    viewModel.getMovies(MainViewModel.MovieListCategory.ALL)
                 }
                 snack.show()
             }
@@ -105,20 +137,26 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId)  {
-        R.id.sort_a_z -> {
-            viewModel.sortMovies(true)
+        R.id.sort_popular_a_z -> {
+            viewModel.sortMovies(true, MainViewModel.MovieListCategory.POPULAR)
             true
         }
 
-        R.id.sort_z_a -> {
-            viewModel.sortMovies(false)
+        R.id.sort_popular_z_a -> {
+            viewModel.sortMovies(false, MainViewModel.MovieListCategory.POPULAR)
             true
         }
 
         else ->  super.onOptionsItemSelected(item)
     }
 
-    private fun onMoviesUpdated(movies: List<Movie>) {
-        adapter.submitList(movies)
+    private fun onMoviesUpdated(movies: List<Movie>, category: MainViewModel.MovieListCategory) {
+
+        when (category) {
+            MainViewModel.MovieListCategory.POPULAR -> popularMoviesAdapter.submitList(movies)
+
+            MainViewModel.MovieListCategory.TOP_RATED -> topRatedMoviesAdapter.submitList(movies)
+            else -> return
+        }
     }
 }

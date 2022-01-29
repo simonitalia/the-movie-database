@@ -10,42 +10,96 @@
             type="com.italiasimon.themoviedatabase.ui.main.MainViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <FrameLayout
-            android:id="@+id/activity_main_image_of_the_day_layout"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/movie_recycler_view"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:gravity="center"
-                android:contentDescription="@string/description_text_movie_poster_card"
-                tools:listitem="@layout/item_movie"/>
+            android:layout_height="match_parent">
 
             <ProgressBar
-                android:id="@+id/progress_bar_view"
+                android:id="@+id/popular_movies_progress_bar_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 android:layout_gravity="center"
-                android:gravity="center"
                 android:indeterminate="true"
                 android:indeterminateTint="@color/purple_200"
-                app:tmdbApiStatus="@{viewModel.apiStatus}" />
-        </FrameLayout>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:arg1="@{viewModel.apiStatusPopular}"
+                app:arg2="@{viewModel.apiStatusTopRated}"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/popular_movies_title"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/popular_movies_subtitle" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/popular_movies_recycler_view"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_margin_8dp"
+                    android:paddingStart="@dimen/layout_margin_16dp"
+                    android:paddingEnd="@dimen/layout_margin_16dp"
+                    android:clipToPadding="false"
+                    android:contentDescription="@string/description_text_movie_poster_card"
+                    tools:listitem="@layout/item_movie"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/top_rated_movies_title"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/top_rated_movies_subtitle" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/top_rated_movies_recycler_view"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_margin_8dp"
+                    android:paddingStart="@dimen/layout_margin_16dp"
+                    android:paddingEnd="@dimen/layout_margin_16dp"
+                    android:clipToPadding="false"
+                    android:contentDescription="@string/description_text_movie_poster_card"
+                    tools:listitem="@layout/item_movie"/>
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>

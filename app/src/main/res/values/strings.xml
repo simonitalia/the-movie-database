@@ -2,14 +2,25 @@
     <string name="app_name">The Movie Database</string>
 
     <!-- Main Fragment -->
-    <string name="success_fetch_movies">Movies successfully updated!</string>
-    <string name="error_fetch_movies">Failed to fetch movies!</string>
-    <string name="popular">Popular</string>
-    <string name="most_popular_movies">Most Popular Movies!</string>
+    <string name="movies">Movies</string>
+    <string name="popular_movies_title">Popular</string>
+    <string name="popular_movies_subtitle">Hugely popular movies</string>
+    <string name="top_rated_movies_title">Top Rated</string>
+    <string name="top_rated_movies_subtitle">Highest rated movies of all time</string>
+    <string name="upcoming_movies_title">Upcoming</string>
+    <string name="upcoming_movies_subtitle">The latest movies upcoming</string>
+
+    <!-- Main Fragment Errors-->
+    <string name="success_fetch_popular_movies">Popular movies successfully fetched</string>
+    <string name="error_fetch_popular_movies">Failed to fetch popular movies</string>
+    <string name="success_fetch_top_rated_movies">Top rated movies successfully fetched</string>
+    <string name="error_fetch_top_rated_movies">Failed to fetch top rated movies</string>
+    <string name="success_fetch_upcoming_movies">Upcoming movies successfully fetched</string>
+    <string name="error_fetch_upcoming_movies">Failed to fetch upcoming movies</string>
 
     <!-- Main Fragment Options Menu -->
-    <string name="main_options_sort_a_z">Sort A-Z</string>
-    <string name="main_options_sort_z_a">Sort Z-A</string>
+    <string name="main_options_sort_popular_a_z">Sort Popular: A-Z</string>
+    <string name="main_options_sort_popular_z_a">Sort Popular: Z-A</string>
     <string name="popular_movies">Popular Movies</string>
 
     <!-- Main Fragment Snackbar Actions -->
