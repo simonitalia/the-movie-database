@@ -28,7 +28,7 @@ fun bindPosterImage(imageView: ImageView, posterPath: String) {
     Glide.with(imageView)
         .load(Constants.getPosterImagePath(Constants.PosterSize.W_342, posterPath))
         .transform(CenterCrop())
-        .into(imageView)
+//        .into(imageView)
 }
 
 @BindingAdapter("tmdbApiStatus")
