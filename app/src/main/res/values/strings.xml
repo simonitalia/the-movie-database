@@ -13,7 +13,8 @@
 
     <!-- Snackbar Actions -->
     <string name="snackbar_action_try_again">TRY AGAIN</string>
-
+    <string name="description_text_movie_poster_card">movie poster card</string>
+    <string name="description_text_movie_poster_image">movie poster image</string>
 
 
 </resources>
