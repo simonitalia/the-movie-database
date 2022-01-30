@@ -1,6 +1,7 @@
 package com.italiasimon.themoviedatabase.ui.main
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.italiasimon.themoviedatabase.models.Movie
 import com.italiasimon.themoviedatabase.repository.MoviesRepository
@@ -25,8 +26,7 @@ class MainViewModel(
     }
 
     companion object {
-        private const val TAG = "MainActivityViewModel"
-
+        private const val TAG = "MainViewModel"
     }
 
     enum class MovieListCategory {

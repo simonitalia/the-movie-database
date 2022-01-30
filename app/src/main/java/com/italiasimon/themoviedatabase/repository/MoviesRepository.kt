@@ -61,7 +61,7 @@ class MoviesRepository {
 
                         // on fetch error
                         override fun onFailure(call: Call<TmdbGetMoviesResponse>, t: Throwable) {
-                            Log.e(TAG, "Error: onFailure: ${t.localizedMessage}", t)
+                            Log.e(TAG, ".api.getPopularMovies failure: ${t.localizedMessage}", t)
                             onError()
                         }
                     })
@@ -91,7 +91,7 @@ class MoviesRepository {
 
                         // on fetch error
                         override fun onFailure(call: Call<TmdbGetMoviesResponse>, t: Throwable) {
-                            Log.e(TAG, "Error: onFailure: ${t.localizedMessage}", t)
+                            Log.e(TAG, ".api.getTopRatedMovies failure: ${t.localizedMessage}", t)
                             onError()
                         }
                     })
@@ -121,7 +121,7 @@ class MoviesRepository {
 
                         // on fetch error
                         override fun onFailure(call: Call<TmdbGetMoviesResponse>, t: Throwable) {
-                            Log.e(TAG, "Error: onFailure: ${t.localizedMessage}", t)
+                            Log.e(TAG, ".api.getUpcomingMovies failure:: ${t.localizedMessage}", t)
                             onError()
                         }
                     })

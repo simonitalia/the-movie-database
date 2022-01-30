@@ -69,7 +69,7 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
             it?.let { movies ->
                 Snackbar.make(
                     view,
-                    getString(R.string.success_fetch_popular_movies),
+                    getString(R.string.movies_updated),
                     Snackbar.LENGTH_SHORT
                 ).show()
 
@@ -98,7 +98,7 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
             it?.let { movies ->
                 Snackbar.make(
                     view,
-                    getString(R.string.success_fetch_top_rated_movies),
+                    getString(R.string.movies_updated),
                     Snackbar.LENGTH_SHORT
                 ).show()
 

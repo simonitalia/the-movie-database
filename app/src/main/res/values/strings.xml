@@ -10,23 +10,26 @@
     <string name="upcoming_movies_title">Upcoming</string>
     <string name="upcoming_movies_subtitle">The latest movies upcoming</string>
 
-    <!-- Main Fragment Errors-->
+    <!-- Main Fragment Snackbar Messages -->
     <string name="success_fetch_popular_movies">Popular movies successfully fetched</string>
     <string name="error_fetch_popular_movies">Failed to fetch popular movies</string>
     <string name="success_fetch_top_rated_movies">Top rated movies successfully fetched</string>
     <string name="error_fetch_top_rated_movies">Failed to fetch top rated movies</string>
     <string name="success_fetch_upcoming_movies">Upcoming movies successfully fetched</string>
     <string name="error_fetch_upcoming_movies">Failed to fetch upcoming movies</string>
+    <string name="movies_updated">Movies updated</string>
+
+    <!-- Main Fragment Snackbar Actions -->
+    <string name="snackbar_action_try_again">TRY AGAIN</string>
+    <string name="description_text_movie_poster_card">movie poster card</string>
+    <string name="description_text_movie_poster_image">movie poster image</string>
 
     <!-- Main Fragment Options Menu -->
     <string name="main_options_sort_popular_a_z">Sort Popular: A-Z</string>
     <string name="main_options_sort_popular_z_a">Sort Popular: Z-A</string>
     <string name="popular_movies">Popular Movies</string>
 
-    <!-- Main Fragment Snackbar Actions -->
-    <string name="snackbar_action_try_again">TRY AGAIN</string>
-    <string name="description_text_movie_poster_card">movie poster card</string>
-    <string name="description_text_movie_poster_image">movie poster image</string>
+
 
     <!-- Detail Fragment -->
 
