@@ -1,10 +1,12 @@
 package com.italiasimon.themoviedatabase.ui.main
 
 import android.os.Bundle
+import android.text.Layout
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.italiasimon.themoviedatabase.R
 import com.italiasimon.themoviedatabase.databinding.FragmentMainBinding
@@ -123,11 +125,19 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
                 snack.show()
             }
         })
+
+        // selected Movie
+        viewModel.selectedMovie.observe(viewLifecycleOwner, {
+            it?.let { movie ->
+                findNavController().navigate(MainFragmentDirections.actionMainFragmentToMovieDetailFragment())
+                viewModel.showMovieDetailFragmentComplete()
+            }
+        })
     }
 
+    // pass selected movie to view model
     override fun onItemViewPressed(movie: Movie) {
-        TODO("Not yet implemented")
-        // navigate to item detail
+       viewModel.onSelectedMovie(movie)
     }
 
     /*

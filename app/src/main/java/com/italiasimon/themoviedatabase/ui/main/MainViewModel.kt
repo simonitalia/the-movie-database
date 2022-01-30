@@ -59,10 +59,17 @@ class MainViewModel(
     val showErrorTopRated: LiveData<Boolean>
         get() = _showErrorTopRated
 
+    private val _selectedMovie = MutableLiveData<Movie?>()
+    val selectedMovie: LiveData<Movie?>
+        get() = _selectedMovie
+
     init {
         getMovies(MovieListCategory.ALL)
     }
 
+    /*
+     * Fetch movies data
+     */
     fun getMovies(category: MovieListCategory) {
         when (category) {
 
@@ -160,6 +167,9 @@ class MainViewModel(
         }
     }
 
+    /*
+     * Sort movies
+     */
     fun sortMovies(ascending: Boolean, category: MovieListCategory) {
 
         when (category) {
@@ -177,5 +187,17 @@ class MainViewModel(
 
             else -> return
         }
+    }
+
+    /*
+     * Navigation
+     */
+
+    fun onSelectedMovie(movie: Movie) {
+        _selectedMovie.value = movie
+    }
+
+    fun showMovieDetailFragmentComplete() {
+        _selectedMovie.value = null // prevent subsequent navigation
     }
 }
