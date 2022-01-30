@@ -9,7 +9,6 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.italiasimon.themoviedatabase.ui.main.MainFragment"
-        android:label="fragment_main"
         tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_movieDetailFragment"
@@ -19,6 +18,11 @@
     <fragment
         android:id="@+id/movieDetailFragment"
         android:name="com.italiasimon.themoviedatabase.ui.movieDetail.MovieDetailFragment"
-        tools:layout="@layout/fragment_movie_detail"/>
+        tools:layout="@layout/fragment_movie_detail">
+
+        <argument
+            android:name="movie"
+            app:argType="com.italiasimon.themoviedatabase.models.Movie"/>
+    </fragment>
 
 </navigation>

@@ -33,5 +33,4 @@ class MovieDetailViewModel(
     init {
         _movie.value = movie
     }
-
 }

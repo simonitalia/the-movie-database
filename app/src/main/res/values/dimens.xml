@@ -4,6 +4,7 @@
     <!-- Layout Margin -->
     <dimen name="layout_margin_16dp">16dp</dimen>
     <dimen name="layout_margin_8dp">8dp</dimen>
+    <dimen name="layout_margin_0dp">16dp</dimen>
 
     <!-- Layout Padding -->
     <dimen name="layout_padding_16dp">16dp</dimen>

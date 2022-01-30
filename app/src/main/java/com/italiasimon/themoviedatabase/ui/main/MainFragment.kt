@@ -126,10 +126,10 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
             }
         })
 
-        // selected Movie
+        // trigger nagigatin on selected movie
         viewModel.selectedMovie.observe(viewLifecycleOwner, {
             it?.let { movie ->
-                findNavController().navigate(MainFragmentDirections.actionMainFragmentToMovieDetailFragment())
+                findNavController().navigate(MainFragmentDirections.actionMainFragmentToMovieDetailFragment(movie))
                 viewModel.showMovieDetailFragmentComplete()
             }
         })

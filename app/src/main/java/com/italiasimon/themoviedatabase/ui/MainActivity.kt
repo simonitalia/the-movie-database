@@ -1,4 +1,4 @@
-package com.italiasimon.themoviedatabase.ui.main
+package com.italiasimon.themoviedatabase.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
