@@ -3,28 +3,17 @@ package com.italiasimon.themoviedatabase.ui.movieDetail
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.addCallback
 import androidx.lifecycle.ViewModelProvider
 import com.italiasimon.themoviedatabase.databinding.FragmentMovieDetailBinding
-
-//private const val MOVIE = "movie"
-
-///**
-// * A simple [Fragment] subclass.
-// * Use the [MovieDetailFragment.newInstance] factory method to
-// * create an instance of this fragment.
-// */
+import com.italiasimon.themoviedatabase.setDisplayHomeAsUpEnabled
+import com.italiasimon.themoviedatabase.setTitle
 
 class MovieDetailFragment : Fragment() {
-//    private late init var movie: Movie
-
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        arguments?.let {
-////            movie = it.getBundle(MOVIE)
-//        }
-//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,23 +35,22 @@ class MovieDetailFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
+        setTitle(movie.title)
+
+        // support back button
+        setHasOptionsMenu(true)
+        setDisplayHomeAsUpEnabled(true)
+
         return binding.root
     }
 
-//    companion object {
-//        /**
-//         * Use this factory method to create a new instance of
-//         * this fragment using the provided parameters.
-//         *
-//         * @movie movie Movie Parameter.
-//         * @return A new instance of fragment MovieDetailsFragment.
-//         */
-//        @JvmStatic
-//        fun newInstance(movie: Movie) =
-//            MovieDetailFragment().apply {
-//                arguments = Bundle().apply {
-////                    putBundle(MOVIE, movie)
-//                }
-//            }
-//    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        // on back button pressed
+        if (item.itemId == android.R.id.home) {
+            requireActivity().onBackPressed()
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
 }
