@@ -137,7 +137,7 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
         })
 
         setDisplayHomeAsUpEnabled(false)
-        setTitle(getString(R.string.app_name))
+        setTitle(getString(R.string.app_name_short))
     }
 
     override fun onResume() {
