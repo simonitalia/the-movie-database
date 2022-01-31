@@ -29,15 +29,15 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:backdropImage="@{viewModel.movie.backdropPath}"/>
+                app:bindBackdropImage="@{viewModel.movie.backdropPath}"/>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/movie_poster_card"
                 app:cardCornerRadius="4dp"
                 android:layout_width="128dp"
                 android:layout_height="172dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginStart="@dimen/layout_margin_16dp"
+                android:layout_marginEnd="@dimen/layout_margin_8dp"
                 app:layout_constraintBottom_toBottomOf="@+id/backdrop_guideline"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/backdrop_guideline" >
@@ -46,7 +46,7 @@
                     android:id="@+id/movie_poster"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:posterImage="@{viewModel.movie.posterPath}" />
+                    app:bindPosterImage="@{viewModel.movie.posterPath}" />
 
             </androidx.cardview.widget.CardView>
 
@@ -93,9 +93,9 @@
                 android:id="@+id/movie_overview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="@dimen/layout_margin_16dp"
+                android:layout_marginTop="@dimen/layout_margin_16dp"
+                android:layout_marginEnd="@dimen/layout_margin_16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/movie_poster_title_barrier"
@@ -108,7 +108,7 @@
                 style="@style/Widget.AppCompat.RatingBar.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/layout_margin_8dp"
                 app:layout_constraintEnd_toEndOf="@+id/movie_poster_card"
                 app:layout_constraintStart_toStartOf="@+id/movie_poster_card"
                 app:layout_constraintTop_toBottomOf="@+id/movie_poster_card" />

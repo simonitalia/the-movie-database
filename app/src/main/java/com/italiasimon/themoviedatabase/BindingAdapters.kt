@@ -20,7 +20,7 @@ fun bindTextView(textView: TextView, text: String) {
     textView.contentDescription = text
 }
 
-@BindingAdapter("posterImage")
+@BindingAdapter("bindPosterImage")
 fun bindPosterImage(imageView: ImageView, imagePath: String) {
     Glide.with(imageView)
         .load(Constants.PosterSize.getImagePath(Constants.PosterSize.W_342, imagePath))
@@ -32,7 +32,7 @@ fun bindPosterImage(imageView: ImageView, imagePath: String) {
  * fragment_main bindings.
  */
 
-@BindingAdapter("arg1", "arg2", requireAll = true)
+@BindingAdapter("bindApiStatusArg1", "bindApiStatusArg2", requireAll = true)
 fun bindApiStatus(progressBarView: ProgressBar, apiStatusPopular: TmdbApi.ApiStatus, apiStatusTopRated: TmdbApi.ApiStatus) {
     progressBarView.visibility = if (apiStatusPopular == TmdbApi.ApiStatus.LOADING || apiStatusTopRated == TmdbApi.ApiStatus.LOADING) View.VISIBLE else View.GONE
 }
@@ -41,10 +41,11 @@ fun bindApiStatus(progressBarView: ProgressBar, apiStatusPopular: TmdbApi.ApiSta
  * fragment_movie_detail bindings.
  */
 
-@BindingAdapter("backdropImage")
+@BindingAdapter("bindBackdropImage")
 fun bindBackdropImage(imageView: ImageView, imagePath: String) {
     Glide.with(imageView)
         .load(Constants.BackdropSize.getImagePath(Constants.BackdropSize.W_1280, imagePath))
         .transform(CenterCrop())
         .into(imageView)
 }
+
