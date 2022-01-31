@@ -2,8 +2,13 @@
     <string name="app_name">The Movie Database</string>
     <string name="app_name_short">Tmdb</string>
 
+    <!-- Multi-purpose -->
+    <string name="favorite">Favorite</string>
+    <string name="content_description_favorite">Favorite icon</string>
+
     <!-- Main Fragment -->
     <string name="movies">Movies</string>
+    <string name="popular_movies">Popular Movies</string>
     <string name="popular_movies_title">Popular</string>
     <string name="popular_movies_subtitle">Hugely popular movies</string>
     <string name="top_rated_movies_title">Top Rated</string>
@@ -19,6 +24,7 @@
     <string name="success_fetch_upcoming_movies">Upcoming movies successfully fetched</string>
     <string name="error_fetch_upcoming_movies">Failed to fetch upcoming movies</string>
     <string name="movies_updated">Movies updated</string>
+    <string name="error_fetch_movies">Failed to fetch movies</string>
 
     <!-- Main Fragment Snackbar Actions -->
     <string name="snackbar_action_try_again">TRY AGAIN</string>
@@ -28,6 +34,8 @@
     <!-- Main Fragment Options Menu -->
     <string name="main_options_sort_popular_a_z">Sort Popular: A-Z</string>
     <string name="main_options_sort_popular_z_a">Sort Popular: Z-A</string>
-    <string name="popular_movies">Popular Movies</string>
+
+    <!-- Movie Detail Fragment Options Menu -->
+
 
 </resources>

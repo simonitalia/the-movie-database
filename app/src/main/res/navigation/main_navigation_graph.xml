@@ -6,6 +6,11 @@
     android:id="@+id/main_navigation_graph"
     app:startDestination="@id/mainFragment">
 
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.italiasimon.themoviedatabase.ui.MainActivity"
+        android:label="MainActivity" />
+
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.italiasimon.themoviedatabase.ui.main.MainFragment"

@@ -1,7 +1,6 @@
 package com.italiasimon.themoviedatabase.ui.main
 
 import android.os.Bundle
-import android.text.Layout
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -158,12 +157,12 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId)  {
-        R.id.sort_popular_a_z -> {
+        R.id.menu_item_sort_popular_a_z -> {
             viewModel.sortMovies(true, MainViewModel.MovieListCategory.POPULAR)
             true
         }
 
-        R.id.sort_popular_z_a -> {
+        R.id.menu_item_sort_popular_z_a -> {
             viewModel.sortMovies(false, MainViewModel.MovieListCategory.POPULAR)
             true
         }
