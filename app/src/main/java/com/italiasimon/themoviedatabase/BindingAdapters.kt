@@ -11,7 +11,7 @@ import com.italiasimon.themoviedatabase.tmdbClient.TmdbApi
 import com.italiasimon.themoviedatabase.ui.main.MainViewModel
 
 /**
- * General purpose bindings.
+ * Multi Fragment bindings.
  */
 
 @BindingAdapter("bindText")
@@ -20,19 +20,31 @@ fun bindTextView(textView: TextView, text: String) {
     textView.contentDescription = text
 }
 
-/**
- * fragment_main bindings .
- */
-
 @BindingAdapter("posterImage")
-fun bindPosterImage(imageView: ImageView, posterPath: String) {
+fun bindPosterImage(imageView: ImageView, imagePath: String) {
     Glide.with(imageView)
-        .load(Constants.getPosterImagePath(Constants.PosterSize.W_342, posterPath))
+        .load(Constants.PosterSize.getImagePath(Constants.PosterSize.W_342, imagePath))
         .transform(CenterCrop())
         .into(imageView)
 }
 
+/**
+ * fragment_main bindings.
+ */
+
 @BindingAdapter("arg1", "arg2", requireAll = true)
 fun bindApiStatus(progressBarView: ProgressBar, apiStatusPopular: TmdbApi.ApiStatus, apiStatusTopRated: TmdbApi.ApiStatus) {
     progressBarView.visibility = if (apiStatusPopular == TmdbApi.ApiStatus.LOADING || apiStatusTopRated == TmdbApi.ApiStatus.LOADING) View.VISIBLE else View.GONE
+}
+
+/**
+ * fragment_movie_detail bindings.
+ */
+
+@BindingAdapter("backdropImage")
+fun bindBackdropImage(imageView: ImageView, imagePath: String) {
+    Glide.with(imageView)
+        .load(Constants.BackdropSize.getImagePath(Constants.BackdropSize.W_1280, imagePath))
+        .transform(CenterCrop())
+        .into(imageView)
 }

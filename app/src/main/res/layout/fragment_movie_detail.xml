@@ -28,7 +28,8 @@
                 app:layout_constraintBottom_toBottomOf="@+id/backdrop_guideline"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:backdropImage="@{viewModel.movie.backdropPath}"/>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/movie_poster_card"
@@ -39,12 +40,13 @@
                 android:layout_marginEnd="8dp"
                 app:layout_constraintBottom_toBottomOf="@+id/backdrop_guideline"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/backdrop_guideline">
+                app:layout_constraintTop_toBottomOf="@id/backdrop_guideline" >
 
                 <ImageView
                     android:id="@+id/movie_poster"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    app:posterImage="@{viewModel.movie.posterPath}" />
 
             </androidx.cardview.widget.CardView>
 
