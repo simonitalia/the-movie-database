@@ -1,8 +1,10 @@
 package com.italiasimon.themoviedatabase
 
+import android.media.Rating
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
@@ -48,4 +50,10 @@ fun bindBackdropImage(imageView: ImageView, imagePath: String) {
         .transform(CenterCrop())
         .into(imageView)
 }
+
+@BindingAdapter("bindRating")
+fun bindRating(ratingBar: RatingBar, rating: Float) {
+    ratingBar.rating = rating / 2
+}
+
 
