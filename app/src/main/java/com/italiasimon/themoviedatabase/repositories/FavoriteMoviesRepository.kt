@@ -43,7 +43,7 @@ class FavoriteMoviesRepository(
     suspend fun removeFavorite(
         movie: Movie,
         onSuccess: () -> Unit,
-        onFailure: (error: Exception) -> Unit
+        onFailure: () -> Unit
     ) {
 
         withContext(ioDispatcher) {
@@ -53,7 +53,7 @@ class FavoriteMoviesRepository(
                 onSuccess()
 
             } catch (e: Exception) {
-                onFailure(e)
+                onFailure()
                 Log.i(TAG, ".updateFavorites: Delete error: $e")
             }
         }

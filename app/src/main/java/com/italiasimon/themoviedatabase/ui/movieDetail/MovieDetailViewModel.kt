@@ -1,7 +1,6 @@
 package com.italiasimon.themoviedatabase.ui.movieDetail
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import com.italiasimon.themoviedatabase.models.Movie
 import com.italiasimon.themoviedatabase.repositories.FavoriteMoviesRepository
@@ -32,13 +31,9 @@ class MovieDetailViewModel(
     val isFavorite: LiveData<Boolean>
         get() = _isFavorite
 
-    private val _showSnackbar = MutableLiveData<Boolean>()
-    val showSnackbar: LiveData<Boolean>
-        get() = _showSnackbar
-
-    private val _showErrorMessage = MutableLiveData<Boolean>()
-    val showErrorMessage: LiveData<Boolean>
-        get() = _showErrorMessage
+    private val _showSnackbarError = MutableLiveData<Boolean>()
+    val showSnackbarError: LiveData<Boolean>
+        get() = _showSnackbarError
 
     private val repository: FavoriteMoviesRepository = FavoriteMoviesRepository(app)
 
@@ -56,10 +51,19 @@ class MovieDetailViewModel(
                 repository.removeFavorite(
                     movie = movie,
                     onSuccess = {
-                        onFavoriteUpdated(false)
-                        Log.i(TAG, ".updateFavorites: Movie deleted")
+                        _isFavorite.postValue(false)
+
+                        /*
+                            * FOR TESTING *
+                            * to trigger failure,
+                            * comment out above and uncomment below
+                         */
+
+                        // _isFavorite.value = false
                     },
-                    onFailure = {}
+                    onFailure = {
+                        _showSnackbarError.postValue(true)
+                    }
                 )
             }
 
@@ -68,17 +72,25 @@ class MovieDetailViewModel(
                 repository.saveFavorite(
                     movie = movie,
                     onSuccess = {
-                        onFavoriteUpdated(true)
-                        Log.i(TAG, ".updateFavorites: Movie saved")
+                        _isFavorite.postValue(true)
+
+                        /*
+                            * FOR TESTING *
+                            * to trigger failure,
+                            * comment out above and uncomment below
+                         */
+
+                        // _isFavorite.value = true
                     },
-                    onFailure = {}
+                    onFailure = {
+                        _showSnackbarError.postValue(true)
+                    }
                 )
             }
         }
     }
 
-    private fun onFavoriteUpdated(isFavorite: Boolean) {
-        _isFavorite.postValue(isFavorite)
-            // use liveData.postValue(value) to update live data value from background
+    fun showSnackBarErrorCompleted() {
+        _showSnackbarError.value = false
     }
 }
