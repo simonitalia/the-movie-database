@@ -1,4 +1,4 @@
-package com.italiasimon.themoviedatabase.repository
+package com.italiasimon.themoviedatabase.repositories
 
 import android.util.Log
 import com.italiasimon.themoviedatabase.models.Movie
@@ -27,6 +27,10 @@ class MoviesRepository {
 
         api = retrofit.create(TmdbApi::class.java)
     }
+
+    /*
+     * Get movies list from api endpoint.
+     */
 
     fun getMovies(
         endpoint: TmdbApi.Endpoint,
