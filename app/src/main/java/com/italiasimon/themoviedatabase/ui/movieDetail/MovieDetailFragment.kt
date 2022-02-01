@@ -10,10 +10,23 @@ import com.italiasimon.themoviedatabase.databinding.FragmentMovieDetailBinding
 import com.italiasimon.themoviedatabase.setDisplayHomeAsUpEnabled
 import com.italiasimon.themoviedatabase.setTitle
 
-class MovieDetailFragment : Fragment() {
+class MovieDetailFragment(
+) : Fragment() {
 
     companion object {
         private const val TAG = "MovieDetailFragment"
+    }
+
+    // lazily initialize ViewModel using .Factory to pass in parameters
+    private val viewModel: MovieDetailViewModel by lazy {
+        val activity = requireNotNull(this.activity)  {
+            "You can only access the viewModel after onViewCreated()"
+        }
+
+        val movie = MovieDetailFragmentArgs.fromBundle(requireArguments()).movie
+            // data passed into fragment via safe args on navigation
+
+        ViewModelProvider(this, MovieDetailViewModel.Factory(activity.application, movie)).get(MovieDetailViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -21,28 +34,32 @@ class MovieDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        // properties to pass into viewModel initialization
-        val application = requireNotNull(activity).application
-        val movie = MovieDetailFragmentArgs.fromBundle(requireArguments()).movie
-            // data passed into fragment via safe args on navigation
-
-        // initialize ViewModel Factory and create view model
-        val viewModelFactory = MovieDetailViewModel.Factory(application, movie)
-
         // Inflate the layout for this fragment using data binding
         val binding = FragmentMovieDetailBinding.inflate(inflater)
-        binding.viewModel = ViewModelProvider(
-            this, viewModelFactory).get(MovieDetailViewModel::class.java)
-
+        binding.viewModel = viewModel
         binding.lifecycleOwner = this
-
-        setTitle(movie.title)
 
         // action bar options
         setHasOptionsMenu(true)
         setDisplayHomeAsUpEnabled(true)
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel.movie.observe(viewLifecycleOwner) {
+            it?.let { movie ->
+                setTitle(movie.title)
+            }
+        }
+
+        viewModel.isFavorite.observe(viewLifecycleOwner) {
+            it?.let { value ->
+                //TODO: Update toolbar favorites icon
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
