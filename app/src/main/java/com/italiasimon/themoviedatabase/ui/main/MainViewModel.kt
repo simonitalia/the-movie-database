@@ -61,6 +61,8 @@ class MainViewModel(
     val selectedMovie: LiveData<Movie?>
         get() = _selectedMovie
 
+
+
     private val repository: MoviesRepository = MoviesRepository()
 
     init {

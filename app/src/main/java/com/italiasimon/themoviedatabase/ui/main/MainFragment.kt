@@ -2,6 +2,7 @@ package com.italiasimon.themoviedatabase.ui.main
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -72,13 +73,6 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
         // popular movies
         viewModel.popularMovies.observe(viewLifecycleOwner) {
             it?.let { movies ->
-                Snackbar.make(
-                    view,
-                    getString(R.string.movies_updated),
-                    Snackbar.LENGTH_SHORT
-                ).show()
-
-                // update list
                 onMoviesUpdated(movies, MainViewModel.MovieListCategory.POPULAR)
             }
         }
@@ -101,13 +95,6 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
         // popular movies
         viewModel.topRatedMovies.observe(viewLifecycleOwner) {
             it?.let { movies ->
-                Snackbar.make(
-                    view,
-                    getString(R.string.movies_updated),
-                    Snackbar.LENGTH_SHORT
-                ).show()
-
-                // update list
                 onMoviesUpdated(movies, MainViewModel.MovieListCategory.TOP_RATED)
             }
         }
@@ -173,9 +160,25 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
     private fun onMoviesUpdated(movies: List<Movie>, category: MainViewModel.MovieListCategory) {
 
         when (category) {
-            MainViewModel.MovieListCategory.POPULAR -> popularMoviesAdapter.submitList(movies)
+            MainViewModel.MovieListCategory.POPULAR -> {
+                popularMoviesAdapter.submitList(movies)
 
-            MainViewModel.MovieListCategory.TOP_RATED -> topRatedMoviesAdapter.submitList(movies)
+                Toast.makeText(
+                    this.context,
+                    getString(R.string.success_fetch_popular_movies),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+            MainViewModel.MovieListCategory.TOP_RATED -> {
+                topRatedMoviesAdapter.submitList(movies)
+
+                Toast.makeText(
+                    this.context,
+                    getString(R.string.success_fetch_top_rated_movies),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
             else -> return
         }
     }
