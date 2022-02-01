@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.italiasimon.themoviedatabase.models.Movie
 import com.italiasimon.themoviedatabase.repositories.FavoriteMoviesRepository
+import kotlinx.coroutines.launch
 
 class MovieDetailViewModel(
     app: Application,
@@ -31,15 +32,28 @@ class MovieDetailViewModel(
     val isFavorite: LiveData<Boolean>
         get() = _isFavorite
 
+    private val _showToast = MutableLiveData<Boolean>()
+    val showToast: LiveData<Boolean>
+        get() = _showToast
+
     private val _showSnackbarError = MutableLiveData<Boolean>()
     val showSnackbarError: LiveData<Boolean>
         get() = _showSnackbarError
 
     private val repository: FavoriteMoviesRepository = FavoriteMoviesRepository(app)
 
-    init {
-        //TODO set value
-//        _isFavorite.value =
+    init  {
+        // check if movie is a favorite
+        viewModelScope.launch {
+
+            repository.getMovieById(
+                movie.id,
+                onSuccess = { isFavorite ->
+                    _isFavorite.postValue(isFavorite)
+                },
+                onFailure = {}
+            )
+        }
     }
 
     suspend fun updateFavorites() {
@@ -52,6 +66,7 @@ class MovieDetailViewModel(
                     movie = movie,
                     onSuccess = {
                         _isFavorite.postValue(false)
+                        _showToast.postValue(true)
 
                         /*
                             * FOR TESTING *
@@ -73,6 +88,7 @@ class MovieDetailViewModel(
                     movie = movie,
                     onSuccess = {
                         _isFavorite.postValue(true)
+                        _showToast.postValue(true)
 
                         /*
                             * FOR TESTING *
@@ -92,5 +108,9 @@ class MovieDetailViewModel(
 
     fun showSnackBarErrorCompleted() {
         _showSnackbarError.value = false
+    }
+
+    fun showToastCompleted() {
+        _showToast.value = false
     }
 }

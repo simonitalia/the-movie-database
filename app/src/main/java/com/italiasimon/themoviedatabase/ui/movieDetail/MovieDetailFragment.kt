@@ -52,8 +52,10 @@ class MovieDetailFragment : Fragment() {
 
         setTitle(viewModel.movie.title)
 
-        viewModel.isFavorite.observe(viewLifecycleOwner) { isFavorite ->
-            onMovieFavoriteUpdated(isFavorite)
+        viewModel.showToast.observe(viewLifecycleOwner) { showToast ->
+            if (showToast) {
+                onMovieFavoriteUpdated()
+            }
         }
 
         viewModel.showSnackbarError.observe(viewLifecycleOwner) { showError ->
@@ -90,10 +92,10 @@ class MovieDetailFragment : Fragment() {
         viewModel.updateFavorites()
     }
 
-    private fun onMovieFavoriteUpdated(isFavorite: Boolean) {
+    private fun onMovieFavoriteUpdated() {
 
         //show toast
-        val message = if (isFavorite) {
+        val message = if (viewModel.isFavorite.value == true) {
             getString(R.string.movie_added_to_favorites)
         } else {
             getString(R.string.movie_removed_from_favorites)
@@ -104,6 +106,8 @@ class MovieDetailFragment : Fragment() {
             message,
             Toast.LENGTH_SHORT
         ).show()
+
+        viewModel.showToastCompleted()
     }
 
     private fun onMovieSaveOrRemoveFavoriteError(view: View) {

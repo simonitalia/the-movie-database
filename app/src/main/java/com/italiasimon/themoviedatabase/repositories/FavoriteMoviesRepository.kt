@@ -3,6 +3,7 @@ package com.italiasimon.themoviedatabase.repositories
 import android.app.Application
 import android.util.Log
 import com.italiasimon.themoviedatabase.asMovieDto
+import com.italiasimon.themoviedatabase.asMovieModel
 import com.italiasimon.themoviedatabase.database.LocalDatabase
 import com.italiasimon.themoviedatabase.database.TmdbDatabase
 import com.italiasimon.themoviedatabase.models.Movie
@@ -55,6 +56,33 @@ class FavoriteMoviesRepository(
             } catch (e: Exception) {
                 onFailure()
                 Log.i(TAG, ".updateFavorites: Delete error: $e")
+            }
+        }
+    }
+
+    suspend fun getMovieById(
+        movieId: Long,
+        onSuccess: (Boolean) -> Unit,
+        onFailure: () -> Unit
+    ) {
+
+        withContext(ioDispatcher) {
+            try {
+                val movie = database.moviesDao().getMovieById(movieId)?.asMovieModel()
+                val isMovieFound = (movie?.id == movieId)
+                onSuccess(isMovieFound)
+
+                 val logMessage = if (isMovieFound)  {
+                     "Movie found"
+                } else {
+                    "Movie not found"
+                }
+
+                Log.i(TAG, ".getMovieById: $logMessage")
+
+            } catch(e: Exception) {
+                onFailure()
+                Log.i(TAG, ".getMovieById: Fetching movie error: $e")
             }
         }
     }
