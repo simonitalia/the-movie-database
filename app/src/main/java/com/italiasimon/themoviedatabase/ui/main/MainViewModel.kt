@@ -1,15 +1,13 @@
 package com.italiasimon.themoviedatabase.ui.main
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import com.italiasimon.themoviedatabase.models.Movie
-import com.italiasimon.themoviedatabase.repository.MoviesRepository
+import com.italiasimon.themoviedatabase.repositories.MoviesRepository
 import com.italiasimon.themoviedatabase.tmdbClient.TmdbApi
 
 class MainViewModel(
     app: Application,
-    private val repository: MoviesRepository = MoviesRepository()
 ) : AndroidViewModel(app) {
 
     /*
@@ -62,6 +60,8 @@ class MainViewModel(
     private val _selectedMovie = MutableLiveData<Movie?>()
     val selectedMovie: LiveData<Movie?>
         get() = _selectedMovie
+
+    private val repository: MoviesRepository = MoviesRepository()
 
     init {
         getMovies(MovieListCategory.ALL)

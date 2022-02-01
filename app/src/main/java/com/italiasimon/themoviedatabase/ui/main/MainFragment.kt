@@ -17,7 +17,7 @@ import com.italiasimon.themoviedatabase.ui.adapter.MovieRecyclerViewAdapterListe
 
 class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
 
-    // lazily initialize MainViewModel using .Factory to pass in application parameter
+    // lazily initialize ViewModel using .Factory to pass in parameters
     private val viewModel: MainViewModel by lazy {
         val activity = requireNotNull(this.activity)  {
             "You can only access the viewModel after onViewCreated()"
@@ -70,7 +70,7 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
         // observe view model live data changes
 
         // popular movies
-        viewModel.popularMovies.observe(viewLifecycleOwner, {
+        viewModel.popularMovies.observe(viewLifecycleOwner) {
             it?.let { movies ->
                 Snackbar.make(
                     view,
@@ -81,10 +81,10 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
                 // update list
                 onMoviesUpdated(movies, MainViewModel.MovieListCategory.POPULAR)
             }
-        })
+        }
 
         // showError, popular movies
-        viewModel.showErrorPopular.observe(viewLifecycleOwner, { showError ->
+        viewModel.showErrorPopular.observe(viewLifecycleOwner) { showError ->
             if (showError) {
                 val snack = Snackbar.make(
                     view,
@@ -96,10 +96,10 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
                 }
                 snack.show()
             }
-        })
+        }
 
         // popular movies
-        viewModel.topRatedMovies.observe(viewLifecycleOwner, {
+        viewModel.topRatedMovies.observe(viewLifecycleOwner) {
             it?.let { movies ->
                 Snackbar.make(
                     view,
@@ -110,10 +110,10 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
                 // update list
                 onMoviesUpdated(movies, MainViewModel.MovieListCategory.TOP_RATED)
             }
-        })
+        }
 
         // showError, top rated movies
-        viewModel.showErrorTopRated.observe(viewLifecycleOwner, { showError ->
+        viewModel.showErrorTopRated.observe(viewLifecycleOwner) { showError ->
             if (showError) {
                 val snack = Snackbar.make(
                     view,
@@ -125,15 +125,15 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
                 }
                 snack.show()
             }
-        })
+        }
 
         // trigger nagigatin on selected movie
-        viewModel.selectedMovie.observe(viewLifecycleOwner, {
+        viewModel.selectedMovie.observe(viewLifecycleOwner) {
             it?.let { movie ->
                 findNavController().navigate(MainFragmentDirections.actionMainFragmentToMovieDetailFragment(movie))
                 viewModel.showMovieDetailFragmentComplete()
             }
-        })
+        }
 
         setDisplayHomeAsUpEnabled(false)
         setTitle(getString(R.string.app_name_short))
