@@ -17,12 +17,12 @@
     <string name="upcoming_movies_title">Upcoming</string>
     <string name="upcoming_movies_subtitle">The latest movies upcoming</string>
 
-    <!-- Main Fragment Snackbar Messages -->
-    <string name="success_fetch_popular_movies">Popular movies successfully fetched</string>
+    <!-- Main Fragment Snackbar / Toast Messages -->
+    <string name="success_fetch_popular_movies">Popular movies updated</string>
     <string name="error_fetch_popular_movies">Failed to fetch popular movies</string>
-    <string name="success_fetch_top_rated_movies">Top rated movies successfully fetched</string>
+    <string name="success_fetch_top_rated_movies">Top rated movies updated</string>
     <string name="error_fetch_top_rated_movies">Failed to fetch top rated movies</string>
-    <string name="success_fetch_upcoming_movies">Upcoming movies successfully fetched</string>
+    <string name="success_fetch_upcoming_movies">Upcoming movies updated</string>
     <string name="error_fetch_upcoming_movies">Failed to fetch upcoming movies</string>
     <string name="movies_updated">Movies updated</string>
     <string name="error_fetch_movies">Failed to fetch movies</string>
