@@ -74,7 +74,6 @@ class MovieDetailFragment : Fragment() {
 
             // on favorite pressed
             R.id.menu_item_favorite -> {
-                //TODO: Implement save to favorites
                 onFavoritesOptionsItemTapped()
             }
 
@@ -105,8 +104,6 @@ class MovieDetailFragment : Fragment() {
             message,
             Toast.LENGTH_SHORT
         ).show()
-
-        //TODO: Update toolbar favorites icon
     }
 
     private fun onMovieSaveOrRemoveFavoriteError(view: View) {
