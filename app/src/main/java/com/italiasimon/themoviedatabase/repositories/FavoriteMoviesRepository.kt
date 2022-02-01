@@ -24,7 +24,7 @@ class FavoriteMoviesRepository(
     suspend fun saveFavorite(
         movie: Movie,
         onSuccess: () -> Unit,
-        onFailure: (error: Exception) -> Unit
+        onFailure: () -> Unit
     ) {
 
         withContext(ioDispatcher) {
@@ -32,11 +32,10 @@ class FavoriteMoviesRepository(
             try {
                 database.moviesDao().saveMovie(movie.asMovieDto())
                 onSuccess()
-                Log.i(TAG, ".updateFavorites: SAVE success")
 
             } catch (e: Exception) {
-                onFailure(e)
-                Log.i(TAG, ".updateFavorites: Save error: $e")
+                onFailure()
+                Log.i(TAG, ".updateFavorites: Movie save error: $e")
             }
         }
     }
@@ -52,7 +51,6 @@ class FavoriteMoviesRepository(
             try {
                 database.moviesDao().deleteMovie(movie.id)
                 onSuccess()
-                Log.i(TAG, ".updateFavorites: DELETE success")
 
             } catch (e: Exception) {
                 onFailure(e)

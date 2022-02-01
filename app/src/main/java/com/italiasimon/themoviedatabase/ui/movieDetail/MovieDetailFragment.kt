@@ -1,7 +1,6 @@
 package com.italiasimon.themoviedatabase.ui.movieDetail
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -9,9 +8,9 @@ import com.italiasimon.themoviedatabase.R
 import com.italiasimon.themoviedatabase.databinding.FragmentMovieDetailBinding
 import com.italiasimon.themoviedatabase.setDisplayHomeAsUpEnabled
 import com.italiasimon.themoviedatabase.setTitle
+import kotlinx.coroutines.runBlocking
 
-class MovieDetailFragment(
-) : Fragment() {
+class MovieDetailFragment : Fragment() {
 
     companion object {
         private const val TAG = "MovieDetailFragment"
@@ -49,17 +48,13 @@ class MovieDetailFragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.movie.observe(viewLifecycleOwner) {
-            it?.let { movie ->
-                setTitle(movie.title)
-            }
-        }
+            setTitle(viewModel.movie.title)
 
-        viewModel.isFavorite.observe(viewLifecycleOwner) {
-            it?.let { value ->
-                //TODO: Update toolbar favorites icon
+            viewModel.isFavorite.observe(viewLifecycleOwner) {
+                it?.let { value ->
+                    //TODO: Update toolbar favorites icon
+                }
             }
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -74,7 +69,7 @@ class MovieDetailFragment(
             // on favorite pressed
             R.id.menu_item_favorite -> {
                 //TODO: Implement save to favorites
-                Log.i(TAG, ".onOptionsItemSelected: Favorite button tapped")
+                onFavoritesOptionsItemTapped()
             }
 
             // on up pressed
@@ -84,5 +79,9 @@ class MovieDetailFragment(
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun onFavoritesOptionsItemTapped() = runBlocking {
+        viewModel.updateFavorites()
     }
 }

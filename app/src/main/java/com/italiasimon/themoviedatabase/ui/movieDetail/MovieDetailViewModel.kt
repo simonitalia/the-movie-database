@@ -1,13 +1,14 @@
 package com.italiasimon.themoviedatabase.ui.movieDetail
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.italiasimon.themoviedatabase.models.Movie
 import com.italiasimon.themoviedatabase.repositories.FavoriteMoviesRepository
 
 class MovieDetailViewModel(
     app: Application,
-    movie: Movie
+    val movie: Movie
 ) : AndroidViewModel(app) {
 
     /*
@@ -27,24 +28,57 @@ class MovieDetailViewModel(
         private const val TAG = "MovieDetailViewModel"
     }
 
-    private val _movie = MutableLiveData<Movie>()
-    val movie: LiveData<Movie>
-        get() = _movie
-
     private val _isFavorite = MutableLiveData<Boolean>()
     val isFavorite: LiveData<Boolean>
         get() = _isFavorite
 
+    private val _showSnackbar = MutableLiveData<Boolean>()
+    val showSnackbar: LiveData<Boolean>
+        get() = _showSnackbar
+
+    private val _showErrorMessage = MutableLiveData<Boolean>()
+    val showErrorMessage: LiveData<Boolean>
+        get() = _showErrorMessage
+
     private val repository: FavoriteMoviesRepository = FavoriteMoviesRepository(app)
 
     init {
-        _movie.value = movie
-        _isFavorite.value = false
+        //TODO set value
+//        _isFavorite.value =
     }
 
-    fun updateFavorites(movie: Movie) {
+    suspend fun updateFavorites() {
 
+        when (_isFavorite.value) {
+
+            // remove favorite
+            true -> {
+                repository.removeFavorite(
+                    movie = movie,
+                    onSuccess = {
+                        onFavoriteUpdated(false)
+                        Log.i(TAG, ".updateFavorites: Movie deleted")
+                    },
+                    onFailure = {}
+                )
+            }
+
+            //add favorite
+            else -> {
+                repository.saveFavorite(
+                    movie = movie,
+                    onSuccess = {
+                        onFavoriteUpdated(true)
+                        Log.i(TAG, ".updateFavorites: Movie saved")
+                    },
+                    onFailure = {}
+                )
+            }
+        }
     }
 
-
+    private fun onFavoriteUpdated(isFavorite: Boolean) {
+        _isFavorite.postValue(isFavorite)
+            // use liveData.postValue(value) to update live data value from background
+    }
 }
