@@ -23,36 +23,6 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/layout_margin_16dp"
-                    android:layout_marginTop="@dimen/layout_margin_16dp"
-                    android:layout_marginEnd="@dimen/layout_margin_16dp"
-                    android:text="@string/popular_movies_title"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/layout_margin_16dp"
-                    android:layout_marginEnd="@dimen/layout_margin_16dp"
-                    android:text="@string/popular_movies_subtitle" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/popular_movies_recycler_view"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/layout_margin_8dp"
-                    android:paddingStart="@dimen/layout_margin_16dp"
-                    android:paddingEnd="@dimen/layout_margin_16dp"
-                    android:clipToPadding="false"
-                    android:contentDescription="@string/description_text_movie_poster_card"
-                    tools:listitem="@layout/item_movie"/>
-
                 <ProgressBar
                     android:id="@+id/fetch_movies_progress_bar_view"
                     android:layout_width="wrap_content"
@@ -61,37 +31,82 @@
                     android:indeterminate="true"
                     android:indeterminateTint="@color/light_blue"
                     app:bindApiStatusArg1="@{viewModel.apiStatusPopular}"
-                    app:bindApiStatusArg2="@{viewModel.apiStatusTopRated}"/>
+                    app:bindApiStatusArg2="@{viewModel.apiStatusTopRated}" />
 
-                <TextView
+                <LinearLayout
+                    android:id="@+id/popular_movies_container"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/layout_margin_16dp"
-                    android:layout_marginTop="@dimen/layout_margin_16dp"
-                    android:layout_marginEnd="@dimen/layout_margin_16dp"
-                    android:text="@string/top_rated_movies_title"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/layout_margin_16dp"
-                    android:layout_marginEnd="@dimen/layout_margin_16dp"
-                    android:text="@string/top_rated_movies_subtitle" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/layout_margin_16dp"
+                        android:layout_marginTop="@dimen/layout_margin_16dp"
+                        android:layout_marginEnd="@dimen/layout_margin_16dp"
+                        android:text="@string/popular_movies_title"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/top_rated_movies_recycler_view"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    android:orientation="horizontal"
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/layout_margin_16dp"
+                        android:layout_marginEnd="@dimen/layout_margin_16dp"
+                        android:text="@string/popular_movies_subtitle" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/popular_movies_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_margin_8dp"
+                        android:clipToPadding="false"
+                        android:contentDescription="@string/description_text_movie_poster_card"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/layout_margin_16dp"
+                        android:paddingEnd="@dimen/layout_margin_16dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/item_movie" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/top_rated_movies_container"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/layout_margin_8dp"
-                    android:paddingStart="@dimen/layout_margin_16dp"
-                    android:paddingEnd="@dimen/layout_margin_16dp"
-                    android:clipToPadding="false"
-                    android:contentDescription="@string/description_text_movie_poster_card"
-                    tools:listitem="@layout/item_movie"/>
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/layout_margin_16dp"
+                        android:layout_marginTop="@dimen/layout_margin_16dp"
+                        android:layout_marginEnd="@dimen/layout_margin_16dp"
+                        android:text="@string/top_rated_movies_title"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/layout_margin_16dp"
+                        android:layout_marginEnd="@dimen/layout_margin_16dp"
+                        android:text="@string/top_rated_movies_subtitle" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/top_rated_movies_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_margin_8dp"
+                        android:clipToPadding="false"
+                        android:contentDescription="@string/description_text_movie_poster_card"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/layout_margin_16dp"
+                        android:paddingEnd="@dimen/layout_margin_16dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/item_movie" />
+
+                </LinearLayout>
 
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
