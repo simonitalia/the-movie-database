@@ -4,12 +4,13 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.italiasimon.themoviedatabase.models.Movie
 import com.italiasimon.themoviedatabase.repositories.FavoriteMoviesRepository
+import com.italiasimon.themoviedatabase.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 
 class MovieDetailViewModel(
     app: Application,
     val movie: Movie
-) : AndroidViewModel(app) {
+) : BaseViewModel(app) {
 
     /*
      * Factory for constructing this ViewModel with constructor parameters
@@ -31,14 +32,6 @@ class MovieDetailViewModel(
     private val _isFavorite = MutableLiveData<Boolean>()
     val isFavorite: LiveData<Boolean>
         get() = _isFavorite
-
-    private val _showToast = MutableLiveData<Boolean>()
-    val showToast: LiveData<Boolean>
-        get() = _showToast
-
-    private val _showSnackbarError = MutableLiveData<Boolean>()
-    val showSnackbarError: LiveData<Boolean>
-        get() = _showSnackbarError
 
     private val repository: FavoriteMoviesRepository = FavoriteMoviesRepository(app)
 

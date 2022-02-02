@@ -5,10 +5,11 @@ import androidx.lifecycle.*
 import com.italiasimon.themoviedatabase.models.Movie
 import com.italiasimon.themoviedatabase.repositories.MoviesRepository
 import com.italiasimon.themoviedatabase.tmdbClient.TmdbApi
+import com.italiasimon.themoviedatabase.ui.base.BaseViewModel
 
 class MainViewModel(
     app: Application,
-) : AndroidViewModel(app) {
+) : BaseViewModel(app) {
 
     /*
      * Factory for constructing this MainViewModel with application parameter
