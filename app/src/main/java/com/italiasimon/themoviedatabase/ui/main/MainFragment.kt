@@ -56,6 +56,10 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
         binding.topRatedMoviesRecyclerView.adapter = this.topRatedMoviesAdapter
 
         setHasOptionsMenu(true)
+
+        // fetch movies
+        updateMovies(MainViewModel.MovieListCategory.ALL)
+
         return binding.root
     }
 
@@ -86,7 +90,7 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
                     Snackbar.LENGTH_INDEFINITE
                 )
                 snack.setAction(getString(R.string.snackbar_action_try_again)) {
-                    viewModel.getMovies(MainViewModel.MovieListCategory.ALL)
+                    updateMovies(MainViewModel.MovieListCategory.ALL)
                 }
                 snack.show()
             }
@@ -108,7 +112,7 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
                     Snackbar.LENGTH_INDEFINITE
                 )
                 snack.setAction(getString(R.string.snackbar_action_try_again)) {
-                    viewModel.getMovies(MainViewModel.MovieListCategory.ALL)
+                    updateMovies(MainViewModel.MovieListCategory.ALL)
                 }
                 snack.show()
             }
@@ -155,6 +159,10 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
         }
 
         else ->  super.onOptionsItemSelected(item)
+    }
+
+    private fun updateMovies(category: MainViewModel.MovieListCategory) {
+        viewModel.getMovies(category)
     }
 
     private fun onMoviesUpdated(movies: List<Movie>, category: MainViewModel.MovieListCategory) {
