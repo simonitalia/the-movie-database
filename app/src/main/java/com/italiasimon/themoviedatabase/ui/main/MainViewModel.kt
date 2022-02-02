@@ -64,6 +64,10 @@ class MainViewModel(
 
     private val repository: MoviesRepository = MoviesRepository()
 
+    init {
+        getMovies(MainViewModel.MovieListCategory.ALL)
+    }
+
     /*
      * Fetch movies data
      */

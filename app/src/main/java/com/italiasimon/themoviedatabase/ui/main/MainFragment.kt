@@ -56,10 +56,6 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
         binding.topRatedMoviesRecyclerView.adapter = this.topRatedMoviesAdapter
 
         setHasOptionsMenu(true)
-
-        // fetch movies
-        updateMovies(MainViewModel.MovieListCategory.ALL)
-
         return binding.root
     }
 
