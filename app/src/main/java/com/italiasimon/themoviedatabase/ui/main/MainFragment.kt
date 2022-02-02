@@ -68,16 +68,29 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // observe view model live data changes
+        /*
+            * Observe view model live data changes
+         */
 
-        // popular movies
+        // Popular movies
         viewModel.popularMovies.observe(viewLifecycleOwner) {
             it?.let { movies ->
                 onMoviesUpdated(movies, MainViewModel.MovieListCategory.POPULAR)
             }
         }
 
-        // showError, popular movies
+        viewModel.showToastPopular.observe(viewLifecycleOwner) { showToast ->
+            if (showToast) {
+                Toast.makeText(
+                    this.context,
+                    getString(R.string.success_fetch_popular_movies),
+                    Toast.LENGTH_SHORT
+                ).show()
+
+                viewModel.showToastCompleted(MainViewModel.MovieListCategory.POPULAR)
+            }
+        }
+
         viewModel.showErrorPopular.observe(viewLifecycleOwner) { showError ->
             if (showError) {
                 val snack = Snackbar.make(
@@ -89,17 +102,30 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
                     updateMovies(MainViewModel.MovieListCategory.ALL)
                 }
                 snack.show()
+
+                viewModel.showErrorCompleted(MainViewModel.MovieListCategory.POPULAR)
             }
         }
 
-        // popular movies
+        // Top rated movies
         viewModel.topRatedMovies.observe(viewLifecycleOwner) {
             it?.let { movies ->
                 onMoviesUpdated(movies, MainViewModel.MovieListCategory.TOP_RATED)
             }
         }
 
-        // showError, top rated movies
+        viewModel.showToastTopRated.observe(viewLifecycleOwner) { showToast ->
+            if (showToast) {
+                Toast.makeText(
+                    this.context,
+                    getString(R.string.success_fetch_top_rated_movies),
+                    Toast.LENGTH_SHORT
+                ).show()
+
+                viewModel.showToastCompleted(MainViewModel.MovieListCategory.TOP_RATED)
+            }
+        }
+
         viewModel.showErrorTopRated.observe(viewLifecycleOwner) { showError ->
             if (showError) {
                 val snack = Snackbar.make(
@@ -111,10 +137,12 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
                     updateMovies(MainViewModel.MovieListCategory.ALL)
                 }
                 snack.show()
+
+                viewModel.showErrorCompleted(MainViewModel.MovieListCategory.TOP_RATED)
             }
         }
 
-        // trigger nagigatin on selected movie
+        // trigger navigatin on selected movie
         viewModel.selectedMovie.observe(viewLifecycleOwner) {
             it?.let { movie ->
                 findNavController().navigate(MainFragmentDirections.actionMainFragmentToMovieDetailFragment(movie))
@@ -164,25 +192,8 @@ class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
     private fun onMoviesUpdated(movies: List<Movie>, category: MainViewModel.MovieListCategory) {
 
         when (category) {
-            MainViewModel.MovieListCategory.POPULAR -> {
-                popularMoviesAdapter.submitList(movies)
-
-                Toast.makeText(
-                    this.context,
-                    getString(R.string.success_fetch_popular_movies),
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-
-            MainViewModel.MovieListCategory.TOP_RATED -> {
-                topRatedMoviesAdapter.submitList(movies)
-
-                Toast.makeText(
-                    this.context,
-                    getString(R.string.success_fetch_top_rated_movies),
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+            MainViewModel.MovieListCategory.POPULAR -> popularMoviesAdapter.submitList(movies)
+            MainViewModel.MovieListCategory.TOP_RATED -> topRatedMoviesAdapter.submitList(movies)
             else -> return
         }
     }

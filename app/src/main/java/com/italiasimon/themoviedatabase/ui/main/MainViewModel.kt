@@ -54,10 +54,21 @@ class MainViewModel(
     val topRatedMovies: LiveData<List<Movie>>
         get() = _topRatedMovies
 
+
+    // ui messages
+    private val _showToastPopular = MutableLiveData<Boolean>()
+    val showToastPopular: LiveData<Boolean>
+        get() = _showToastPopular
+
+    private val _showToastTopRated = MutableLiveData<Boolean>()
+    val showToastTopRated: LiveData<Boolean>
+        get() = _showToastTopRated
+
     private val _showErrorTopRated = MutableLiveData<Boolean>()
     val showErrorTopRated: LiveData<Boolean>
         get() = _showErrorTopRated
 
+    // user tapped movie
     private val _selectedMovie = MutableLiveData<Movie?>()
     val selectedMovie: LiveData<Movie?>
         get() = _selectedMovie
@@ -108,12 +119,11 @@ class MainViewModel(
             page,
             onSuccess =  {
                 _apiStatusPopular.value = TmdbApi.ApiStatus.DONE
-                onMoviesUpdated(it, TmdbApi.Endpoint.POPULAR)
-                showError(false, TmdbApi.Endpoint.POPULAR)
+                onMoviesFetched(it, TmdbApi.Endpoint.POPULAR)
             },
             onError = {
                 _apiStatusPopular.value = TmdbApi.ApiStatus.ERROR
-                showError(true, TmdbApi.Endpoint.POPULAR)
+                showError(TmdbApi.Endpoint.POPULAR)
             }
         )
     }
@@ -126,44 +136,55 @@ class MainViewModel(
             page,
             onSuccess =  {
                 _apiStatusTopRated.value = TmdbApi.ApiStatus.DONE
-                onMoviesUpdated(it, TmdbApi.Endpoint.TOP_RATED)
-                showError(false, TmdbApi.Endpoint.TOP_RATED)
+                onMoviesFetched(it, TmdbApi.Endpoint.TOP_RATED)
             },
             onError = {
                 _apiStatusTopRated.value = TmdbApi.ApiStatus.ERROR
-                showError(true, TmdbApi.Endpoint.TOP_RATED)
+                showError(TmdbApi.Endpoint.TOP_RATED)
             }
         )
     }
 
-    private fun onMoviesUpdated(movies: List<Movie>, endpoint: TmdbApi.Endpoint) {
+    private fun onMoviesFetched(movies: List<Movie>, endpoint: TmdbApi.Endpoint) {
 
         when (endpoint) {
             TmdbApi.Endpoint.POPULAR -> {
                 _popularMovies.value = movies
-                _showErrorPopular.value = false
+                _showToastPopular.value = true
             }
 
             TmdbApi.Endpoint.TOP_RATED -> {
                 _topRatedMovies.value = movies
-                _showErrorTopRated.value = false
+                _showToastTopRated.value = true
             }
 
             else -> return
         }
     }
 
-    private fun showError(value: Boolean, endpoint: TmdbApi.Endpoint) {
+    fun showToastCompleted(category: MovieListCategory) {
+
+        when (category) {
+            MovieListCategory.POPULAR -> _showToastPopular.value = false
+            MovieListCategory.TOP_RATED -> _showToastTopRated.value = false
+            else -> return
+        }
+    }
+
+    private fun showError(endpoint: TmdbApi.Endpoint) {
 
         when (endpoint) {
-            TmdbApi.Endpoint.POPULAR -> {
-                _showErrorPopular.value = value
-            }
+            TmdbApi.Endpoint.POPULAR -> _showErrorPopular.value = true
+            TmdbApi.Endpoint.TOP_RATED -> _showErrorTopRated.value = true
+            else -> return
+        }
+    }
 
-            TmdbApi.Endpoint.TOP_RATED -> {
-                _showErrorTopRated.value = value
-            }
+    fun showErrorCompleted(category: MovieListCategory) {
 
+        when (category) {
+            MovieListCategory.POPULAR -> _showErrorPopular.value = false
+                MovieListCategory.TOP_RATED -> _showErrorTopRated.value = false
             else -> return
         }
     }
