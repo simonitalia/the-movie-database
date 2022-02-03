@@ -29,7 +29,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:src="@drawable/image_outline"
-                app:bindBackdropImage="@{viewModel.movie.backdropPath}"/>
+                app:bindBackdropImagePath="@{viewModel.movie.backdropPath}"/>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/movie_poster_card"
@@ -47,7 +47,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/image_outline"
-                    app:bindPosterImage="@{viewModel.movie.posterPath}" />
+                    app:bindPosterImagePath="@{viewModel.movie.posterPath}" />
 
             </androidx.cardview.widget.CardView>
 

@@ -1,6 +1,5 @@
 package com.italiasimon.themoviedatabase
 
-import android.media.Rating
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
@@ -10,7 +9,6 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.italiasimon.themoviedatabase.tmdbClient.TmdbApi
-import com.italiasimon.themoviedatabase.ui.main.MainViewModel
 
 /**
  * Multi Fragment bindings.
@@ -22,7 +20,7 @@ fun bindTextView(textView: TextView, text: String) {
     textView.contentDescription = text
 }
 
-@BindingAdapter("bindPosterImage")
+@BindingAdapter("bindPosterImagePath")
 fun bindPosterImage(imageView: ImageView, imagePath: String) {
     Glide.with(imageView)
         .load(Constants.PosterSize.getImagePath(Constants.PosterSize.W_342, imagePath))
@@ -35,15 +33,15 @@ fun bindPosterImage(imageView: ImageView, imagePath: String) {
  */
 
 @BindingAdapter("bindApiStatusArg1", "bindApiStatusArg2", requireAll = true)
-fun bindApiStatus(progressBarView: ProgressBar, apiStatusPopular: TmdbApi.ApiStatus, apiStatusTopRated: TmdbApi.ApiStatus) {
-    progressBarView.visibility = if (apiStatusPopular == TmdbApi.ApiStatus.LOADING || apiStatusTopRated == TmdbApi.ApiStatus.LOADING) View.VISIBLE else View.GONE
+fun bindApiStatus(progressBarView: ProgressBar, apiStatusArg1: TmdbApi.ApiStatus, apiStatusArg2: TmdbApi.ApiStatus) {
+    progressBarView.visibility = if (apiStatusArg1 == TmdbApi.ApiStatus.LOADING || apiStatusArg2 == TmdbApi.ApiStatus.LOADING) View.VISIBLE else View.GONE
 }
 
 /**
  * fragment_movie_detail bindings.
  */
 
-@BindingAdapter("bindBackdropImage")
+@BindingAdapter("bindBackdropImagePath")
 fun bindBackdropImage(imageView: ImageView, imagePath: String) {
     Glide.with(imageView)
         .load(Constants.BackdropSize.getImagePath(Constants.BackdropSize.W_1280, imagePath))
