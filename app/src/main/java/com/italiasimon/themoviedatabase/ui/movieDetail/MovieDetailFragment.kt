@@ -3,7 +3,6 @@ package com.italiasimon.themoviedatabase.ui.movieDetail
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.italiasimon.themoviedatabase.R
@@ -53,6 +52,14 @@ class MovieDetailFragment : BaseFragment() {
 
         setTitle(viewModel.movie.title)
 
+        viewModel.isFavorite.observe(viewLifecycleOwner) {
+
+
+
+
+
+        }
+
         viewModel.showToast.observe(viewLifecycleOwner) { showToast ->
             if (showToast) {
                 onMovieFavoriteUpdated()
@@ -68,7 +75,7 @@ class MovieDetailFragment : BaseFragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.movie_detail_options, menu)
+        inflater.inflate(R.menu.menu_movie_detail_options, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
@@ -169,7 +168,7 @@ class MainFragment : BaseFragment(), MovieRecyclerViewAdapterListener {
      */
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.main_options, menu)
+        inflater.inflate(R.menu.menu_main_options, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId)  {
