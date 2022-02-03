@@ -15,8 +15,9 @@ import com.italiasimon.themoviedatabase.setDisplayHomeAsUpEnabled
 import com.italiasimon.themoviedatabase.setTitle
 import com.italiasimon.themoviedatabase.ui.adapter.MovieAdapter
 import com.italiasimon.themoviedatabase.ui.adapter.MovieRecyclerViewAdapterListener
+import com.italiasimon.themoviedatabase.ui.base.BaseFragment
 
-class MainFragment: Fragment(), MovieRecyclerViewAdapterListener {
+class MainFragment : BaseFragment(), MovieRecyclerViewAdapterListener {
 
     // lazily initialize ViewModel using .Factory to pass in parameters
     private val viewModel: MainViewModel by lazy {
