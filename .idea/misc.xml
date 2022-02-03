@@ -4,13 +4,22 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.14444444444444443" />
+        <entry key="app/src/main/res/drawable/heart_fill.xml" value="0.132" />
+        <entry key="app/src/main/res/drawable/heart_outline.xml" value="0.132" />
+        <entry key="app/src/main/res/drawable/ic_heart_outline_24dp.xml" value="0.14" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.14" />
+        <entry key="app/src/main/res/drawable/ic_menu_24.xml" value="0.14" />
         <entry key="app/src/main/res/drawable/image_outline.xml" value="0.14444444444444443" />
+        <entry key="app/src/main/res/drawable/menu.xml" value="0.14" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_main.xml" value="0.12" />
+        <entry key="app/src/main/res/layout/fragment_main.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_movie_detail.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_movie_details.xml" value="0.11904761904761904" />
-        <entry key="app/src/main/res/layout/item_movie.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_movie.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/toolbar_app_top.xml" value="0.12771739130434784" />
         <entry key="app/src/main/res/menu/main_options.xml" value="0.10925925925925926" />
+        <entry key="app/src/main/res/menu/movie_detail_options.xml" value="0.20677083333333332" />
+        <entry key="app/src/main/res/menu/toolbar_top.xml" value="0.21197916666666666" />
       </map>
     </option>
   </component>
