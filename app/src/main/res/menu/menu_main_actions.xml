@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menu_item_sort_popular_a_z"
+        android:id="@+id/action_sort_popular_a_z"
         android:title="@string/main_options_sort_popular_a_z" />
 
     <item
-        android:id="@+id/menu_item_sort_popular_z_a"
+        android:id="@+id/action_sort_popular_z_a"
         android:title="@string/main_options_sort_popular_z_a" />
 
 </menu>

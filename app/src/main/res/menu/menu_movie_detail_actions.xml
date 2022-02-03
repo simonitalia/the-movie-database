@@ -3,8 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" >
 
+    <!-- Show as action button -->
+
     <item
-        android:id="@+id/menu_item_favorite"
+        android:id="@+id/action_favorite"
         android:icon="@drawable/ic_heart_fill_24dp"
         android:title="@string/favorite"
         android:contentDescription="@string/content_description_favorite"

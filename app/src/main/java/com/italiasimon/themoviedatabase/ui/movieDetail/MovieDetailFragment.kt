@@ -75,7 +75,7 @@ class MovieDetailFragment : BaseFragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_movie_detail_options, menu)
+        inflater.inflate(R.menu.menu_movie_detail_actions, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -83,7 +83,7 @@ class MovieDetailFragment : BaseFragment() {
         when (item.itemId) {
 
             // on favorite pressed
-            R.id.menu_item_favorite -> {
+            R.id.action_favorite -> {
                 onFavoritesOptionsItemTapped()
             }
 

@@ -168,16 +168,16 @@ class MainFragment : BaseFragment(), MovieRecyclerViewAdapterListener {
      */
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_main_options, menu)
+        inflater.inflate(R.menu.menu_main_actions, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId)  {
-        R.id.menu_item_sort_popular_a_z -> {
+        R.id.action_sort_popular_a_z -> {
             viewModel.sortMovies(true, MainViewModel.MovieListCategory.POPULAR)
             true
         }
 
-        R.id.menu_item_sort_popular_z_a -> {
+        R.id.action_sort_popular_z_a -> {
             viewModel.sortMovies(false, MainViewModel.MovieListCategory.POPULAR)
             true
         }
