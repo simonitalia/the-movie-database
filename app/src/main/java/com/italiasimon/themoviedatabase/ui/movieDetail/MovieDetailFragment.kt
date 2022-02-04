@@ -30,34 +30,52 @@ class MovieDetailFragment : BaseFragment() {
         ViewModelProvider(this, MovieDetailViewModel.Factory(activity.application, movie)).get(MovieDetailViewModel::class.java)
     }
 
+    private lateinit var binding: FragmentMovieDetailBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
         // Inflate the layout for this fragment using data binding
-        val binding = FragmentMovieDetailBinding.inflate(inflater)
+        binding = FragmentMovieDetailBinding.inflate(inflater)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        // action bar options
-        setHasOptionsMenu(true)
-//        setDisplayHomeAsUpEnabled(true)
+        binding.toolbarMovieDetailTop.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
 
+                // on favorite pressed
+                R.id.action_favorite -> {
+                    onFavoritesOptionsItemTapped()
+                    true
+                }
+
+                // on up pressed
+                android.R.id.home -> {
+                    requireActivity().onBackPressed()
+                    true
+                }
+
+                else -> false
+            }
+        }
+
+        binding.toolbarMovieDetailTop.title = viewModel.movie.title
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setTitle(viewModel.movie.title)
+        viewModel.isFavorite.observe(viewLifecycleOwner) { isFavorite ->
+            val menu = binding.toolbarMovieDetailTop.menu
 
-        viewModel.isFavorite.observe(viewLifecycleOwner) {
-
-
-
-
-
+            menu.findItem(R.id.action_favorite).icon = if (isFavorite) {
+                this.activity?.getDrawable(R.drawable.ic_heart_fill_24dp)
+            } else {
+                this.activity?.getDrawable(R.drawable.ic_heart_outline_24dp)
+            }
         }
 
         viewModel.showToast.observe(viewLifecycleOwner) { showToast ->
@@ -71,29 +89,6 @@ class MovieDetailFragment : BaseFragment() {
                 onMovieSaveOrRemoveFavoriteError(view)
             }
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_movie_detail_actions, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        when (item.itemId) {
-
-            // on favorite pressed
-            R.id.action_favorite -> {
-                onFavoritesOptionsItemTapped()
-            }
-
-            // on up pressed
-            android.R.id.home -> {
-                requireActivity().onBackPressed()
-            }
-        }
-
-        return super.onOptionsItemSelected(item)
     }
 
     private fun onFavoritesOptionsItemTapped() = runBlocking {

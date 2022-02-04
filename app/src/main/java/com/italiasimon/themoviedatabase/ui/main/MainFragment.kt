@@ -55,7 +55,28 @@ class MainFragment : BaseFragment(), MovieRecyclerViewAdapterListener {
         binding.popularMoviesRecyclerView.adapter = this.popularMoviesAdapter
         binding.topRatedMoviesRecyclerView.adapter = this.topRatedMoviesAdapter
 
-//        setHasOptionsMenu(true) //enabale toolbar touch events
+        /*
+            * Options Menu setup
+         */
+
+        binding.toolbarMainTop.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+
+                R.id.action_sort_popular_a_z -> {
+                    viewModel.sortMovies(true, MainViewModel.MovieListCategory.POPULAR)
+                    true
+                }
+
+                R.id.action_sort_popular_z_a -> {
+                    viewModel.sortMovies(false, MainViewModel.MovieListCategory.POPULAR)
+                    true
+                }
+
+                else -> false
+            }
+        }
+
+        binding.toolbarMainTop.title = getString(R.string.app_name_short)
         return binding.root
     }
 
@@ -149,11 +170,6 @@ class MainFragment : BaseFragment(), MovieRecyclerViewAdapterListener {
                 viewModel.showMovieDetailFragmentComplete()
             }
         }
-
-        setHasOptionsMenu(true)
-//        setDisplayHomeAsUpEnabled(false)
-//        setTitle(getString(R.string.app_name_short))
-
     }
 
     override fun onResume() {
@@ -163,28 +179,6 @@ class MainFragment : BaseFragment(), MovieRecyclerViewAdapterListener {
     // pass selected movie to view model
     override fun onItemViewPressed(movie: Movie) {
        viewModel.onSelectedMovie(movie)
-    }
-
-    /*
-     * Options Menu setup
-     */
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_main_actions, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId)  {
-        R.id.action_sort_popular_a_z -> {
-            viewModel.sortMovies(true, MainViewModel.MovieListCategory.POPULAR)
-            true
-        }
-
-        R.id.action_sort_popular_z_a -> {
-            viewModel.sortMovies(false, MainViewModel.MovieListCategory.POPULAR)
-            true
-        }
-
-        else ->  super.onOptionsItemSelected(item)
     }
 
     private fun updateMovies(category: MainViewModel.MovieListCategory) {

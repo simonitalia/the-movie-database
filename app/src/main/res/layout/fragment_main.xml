@@ -10,107 +10,129 @@
             type="com.italiasimon.themoviedatabase.ui.main.MainViewModel" />
     </data>
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/toolbar_main_top_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent" >
 
-            <LinearLayout
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar_main_top"
+                style="@style/Widget.MaterialComponents.Toolbar.Primary"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="?attr/actionBarSize"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_scrollFlags="scroll|enterAlways|snap"
+                android:elevation="4dp"
+                app:menu="@menu/menu_main_actions"
+                app:navigationIcon="@drawable/ic_menu_24dp"
+                tools:title="@string/app_name_short" />
+        </com.google.android.material.appbar.AppBarLayout>
 
-                <include layout="@layout/toolbar_main_top" />
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_main_top_container"
+            android:fillViewport="true" >
 
-                <ProgressBar
-                    android:id="@+id/fetch_movies_progress_bar_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:indeterminate="true"
-                    android:indeterminateTint="@color/light_blue"
-                    app:bindApiStatusArg1="@{viewModel.apiStatusPopular}"
-                    app:bindApiStatusArg2="@{viewModel.apiStatusTopRated}" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
                 <LinearLayout
-                    android:id="@+id/popular_movies_container"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="match_parent"
+                    <ProgressBar
+                        android:id="@+id/fetch_movies_progress_bar_view"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/layout_margin_16dp"
-                        android:layout_marginTop="@dimen/layout_margin_16dp"
-                        android:layout_marginEnd="@dimen/layout_margin_16dp"
-                        android:text="@string/popular_movies_title"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:layout_gravity="center"
+                        android:indeterminate="true"
+                        android:indeterminateTint="@color/light_blue"
+                        app:bindApiStatusArg1="@{viewModel.apiStatusPopular}"
+                        app:bindApiStatusArg2="@{viewModel.apiStatusTopRated}" />
 
-                    <TextView
+                    <LinearLayout
+                        android:id="@+id/popular_movies_container"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/layout_margin_16dp"
-                        android:layout_marginEnd="@dimen/layout_margin_16dp"
-                        android:text="@string/popular_movies_subtitle" />
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/popular_movies_recycler_view"
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/layout_margin_16dp"
+                            android:layout_marginTop="@dimen/layout_margin_16dp"
+                            android:layout_marginEnd="@dimen/layout_margin_16dp"
+                            android:text="@string/popular_movies_title"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/layout_margin_16dp"
+                            android:layout_marginEnd="@dimen/layout_margin_16dp"
+                            android:text="@string/popular_movies_subtitle" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/popular_movies_recycler_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/layout_margin_8dp"
+                            android:clipToPadding="false"
+                            android:contentDescription="@string/description_text_movie_poster_card"
+                            android:orientation="horizontal"
+                            android:paddingStart="@dimen/layout_margin_16dp"
+                            android:paddingEnd="@dimen/layout_margin_16dp"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:listitem="@layout/item_movie" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/top_rated_movies_container"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/layout_margin_8dp"
-                        android:clipToPadding="false"
-                        android:contentDescription="@string/description_text_movie_poster_card"
-                        android:orientation="horizontal"
-                        android:paddingStart="@dimen/layout_margin_16dp"
-                        android:paddingEnd="@dimen/layout_margin_16dp"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        tools:listitem="@layout/item_movie" />
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/layout_margin_16dp"
+                            android:layout_marginTop="@dimen/layout_margin_16dp"
+                            android:layout_marginEnd="@dimen/layout_margin_16dp"
+                            android:text="@string/top_rated_movies_title"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/layout_margin_16dp"
+                            android:layout_marginEnd="@dimen/layout_margin_16dp"
+                            android:text="@string/top_rated_movies_subtitle" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/top_rated_movies_recycler_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/layout_margin_8dp"
+                            android:clipToPadding="false"
+                            android:contentDescription="@string/description_text_movie_poster_card"
+                            android:orientation="horizontal"
+                            android:paddingStart="@dimen/layout_margin_16dp"
+                            android:paddingEnd="@dimen/layout_margin_16dp"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:listitem="@layout/item_movie" />
+                    </LinearLayout>
                 </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/top_rated_movies_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/layout_margin_16dp"
-                        android:layout_marginTop="@dimen/layout_margin_16dp"
-                        android:layout_marginEnd="@dimen/layout_margin_16dp"
-                        android:text="@string/top_rated_movies_title"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/layout_margin_16dp"
-                        android:layout_marginEnd="@dimen/layout_margin_16dp"
-                        android:text="@string/top_rated_movies_subtitle" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/top_rated_movies_recycler_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/layout_margin_8dp"
-                        android:clipToPadding="false"
-                        android:contentDescription="@string/description_text_movie_poster_card"
-                        android:orientation="horizontal"
-                        android:paddingStart="@dimen/layout_margin_16dp"
-                        android:paddingEnd="@dimen/layout_margin_16dp"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        tools:listitem="@layout/item_movie" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

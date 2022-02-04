@@ -1,7 +1,5 @@
 package com.italiasimon.themoviedatabase
 
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import com.italiasimon.themoviedatabase.database.MovieDto
 import com.italiasimon.themoviedatabase.models.Movie
 
@@ -9,21 +7,7 @@ import com.italiasimon.themoviedatabase.models.Movie
  * Extension helper functions
  */
 
-fun Fragment.setTitle(title: String) {
-    if (activity is AppCompatActivity) {
-        (activity as AppCompatActivity).supportActionBar?.title = title
-    }
-}
-
-fun Fragment.setDisplayHomeAsUpEnabled(bool: Boolean) {
-    if (activity is AppCompatActivity) {
-        val actionBar = (activity as AppCompatActivity).supportActionBar
-        actionBar?.setDisplayHomeAsUpEnabled(bool)
-
-    }
-}
-
-/**
+/*
  * Movie data model helper functions
  * Convert MovieDto (database entity) objects to domain model objects
  */
@@ -54,7 +38,7 @@ fun MovieDto.asMovieModel() : Movie {
     )
 }
 
-/**
+/*
  * MovieDto data model helper functions
  */
 
