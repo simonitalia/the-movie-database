@@ -55,7 +55,7 @@ class MainFragment : BaseFragment(), MovieRecyclerViewAdapterListener {
         binding.popularMoviesRecyclerView.adapter = this.popularMoviesAdapter
         binding.topRatedMoviesRecyclerView.adapter = this.topRatedMoviesAdapter
 
-        setHasOptionsMenu(true)
+//        setHasOptionsMenu(true) //enabale toolbar touch events
         return binding.root
     }
 
@@ -150,8 +150,10 @@ class MainFragment : BaseFragment(), MovieRecyclerViewAdapterListener {
             }
         }
 
-        setDisplayHomeAsUpEnabled(false)
-        setTitle(getString(R.string.app_name_short))
+        setHasOptionsMenu(true)
+//        setDisplayHomeAsUpEnabled(false)
+//        setTitle(getString(R.string.app_name_short))
+
     }
 
     override fun onResume() {

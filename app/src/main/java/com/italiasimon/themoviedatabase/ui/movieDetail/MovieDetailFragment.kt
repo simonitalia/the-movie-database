@@ -42,7 +42,7 @@ class MovieDetailFragment : BaseFragment() {
 
         // action bar options
         setHasOptionsMenu(true)
-        setDisplayHomeAsUpEnabled(true)
+//        setDisplayHomeAsUpEnabled(true)
 
         return binding.root
     }
