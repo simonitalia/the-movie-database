@@ -3,6 +3,8 @@ package com.italiasimon.themoviedatabase.ui.movieDetail
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.italiasimon.themoviedatabase.R
@@ -40,31 +42,20 @@ class MovieDetailFragment : BaseFragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        //toolbar onClickListeners
-
-        binding.toolbarMovieDetailTop.setNavigationOnClickListener {
-          onNavigationBackPressed()
-        }
-
-        binding.toolbarMovieDetailTop.setOnMenuItemClickListener { menuItem ->
-            onToolbarMenuItemSelected(menuItem)
-            true
-        }
-        binding.toolbarMovieDetailTop.title = viewModel.movie.title
+        setTitle(viewModel.movie.title)
+        setHasOptionsMenu(true)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.isFavorite.observe(viewLifecycleOwner) { isFavorite ->
-            val menu = binding.toolbarMovieDetailTop.menu
+        /*
+            * Observe view model live data changes
+         */
 
-            menu.findItem(R.id.action_favorite).icon = if (isFavorite) {
-                this.activity?.getDrawable(R.drawable.ic_heart_fill_24dp)
-            } else {
-                this.activity?.getDrawable(R.drawable.ic_heart_outline_24dp)
-            }
+        viewModel.isFavorite.observe(viewLifecycleOwner) {
+            requireActivity().invalidateOptionsMenu()
         }
 
         viewModel.showToast.observe(viewLifecycleOwner) { showToast ->
@@ -80,25 +71,33 @@ class MovieDetailFragment : BaseFragment() {
         }
     }
 
-    override fun onNavigationBackPressed() {
-        super.onNavigationBackPressed()
-    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
 
-    override fun onToolbarMenuItemSelected(menuItem: MenuItem) {
-        super.onToolbarMenuItemSelected(menuItem)
+        inflater.inflate(R.menu.actions_menu, menu)
 
-        when (menuItem.itemId) {
-
-            // on favorite pressed
-            R.id.action_favorite -> {
-                onFavoritesOptionsItemTapped()
-            }
-
-            else -> false
+        // set favorite action icon
+        menu.findItem(R.id.action_favorite).icon = if (viewModel.isFavorite.value == true) {
+            this.activity?.getDrawable(R.drawable.ic_heart_fill_24dp)
+        } else {
+            this.activity?.getDrawable(R.drawable.ic_heart_outline_24dp)
         }
     }
 
-    private fun onFavoritesOptionsItemTapped() = runBlocking {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        return when (item.itemId) {
+            // on favorite pressed
+            R.id.action_favorite -> {
+                onFavoritesOptionsItemPressed()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun onFavoritesOptionsItemPressed() = runBlocking {
         viewModel.updateFavorites()
     }
 
@@ -135,7 +134,7 @@ class MovieDetailFragment : BaseFragment() {
             Snackbar.LENGTH_LONG
         )
         snack.setAction(getString(R.string.snackbar_action_try_again)) {
-            onFavoritesOptionsItemTapped()
+            onFavoritesOptionsItemPressed()
         }
         snack.show()
 

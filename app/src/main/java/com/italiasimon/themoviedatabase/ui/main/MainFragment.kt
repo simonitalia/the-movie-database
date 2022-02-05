@@ -53,12 +53,7 @@ class MainFragment : BaseFragment(), MovieRecyclerViewAdapterListener {
         binding.popularMoviesRecyclerView.adapter = this.popularMoviesAdapter
         binding.topRatedMoviesRecyclerView.adapter = this.topRatedMoviesAdapter
 
-        binding.toolbarMainTop.setOnMenuItemClickListener { menuItem ->
-            onToolbarMenuItemSelected(menuItem)
-            true
-        }
-
-        binding.toolbarMainTop.title = getString(R.string.app_name_short)
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -145,7 +140,7 @@ class MainFragment : BaseFragment(), MovieRecyclerViewAdapterListener {
             }
         }
 
-        // trigger navigatin on selected movie
+        // trigger navigation on selected movie
         viewModel.selectedMovie.observe(viewLifecycleOwner) {
             it?.let { movie ->
                 findNavController().navigate(MainFragmentDirections.actionMainFragmentToMovieDetailFragment(movie))
@@ -154,23 +149,25 @@ class MainFragment : BaseFragment(), MovieRecyclerViewAdapterListener {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.sort_by_overflow_menu, menu)
     }
 
-    override fun onToolbarMenuItemSelected(menuItem: MenuItem) {
-        super.onToolbarMenuItemSelected(menuItem)
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        when (menuItem.itemId) {
+        return when (item.itemId) {
             R.id.action_sort_popular_a_z -> {
                 viewModel.sortMovies(true, MainViewModel.MovieListCategory.POPULAR)
+                true
             }
 
             R.id.action_sort_popular_z_a -> {
                 viewModel.sortMovies(false, MainViewModel.MovieListCategory.POPULAR)
+                true
             }
 
-            else -> false
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
