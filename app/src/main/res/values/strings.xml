@@ -35,6 +35,9 @@
     <string name="main_options_sort_popular_a_z">Sort Popular: A-Z</string>
     <string name="main_options_sort_popular_z_a">Sort Popular: Z-A</string>
 
+    <!-- Movie Detail Fragment -->
+    <string name="description_text_movie_backdrop_image">movie backdrop image</string>
+
     <!-- Movie Detail Fragment Options Menu -->
     <string name="movie_added_to_favorites">Movie added to favorites</string>
     <string name="movie_removed_from_favorites">Movie removed from favorites</string>

@@ -20,9 +20,7 @@
             android:id="@+id/item_movie_poster"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:contentDescription="@string/description_text_movie_poster_image"
             android:src="@drawable/image_outline"
-            app:bindPosterImagePath="@{movie.posterPath}" />
-
+            app:bindPosterImagePath="@{movie.posterPath}"/>
     </androidx.cardview.widget.CardView>
 </layout>

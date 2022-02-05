@@ -7,8 +7,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.italiasimon.themoviedatabase.R
 import com.italiasimon.themoviedatabase.databinding.FragmentMovieDetailBinding
-import com.italiasimon.themoviedatabase.setDisplayHomeAsUpEnabled
-import com.italiasimon.themoviedatabase.setTitle
 import com.italiasimon.themoviedatabase.ui.base.BaseFragment
 import kotlinx.coroutines.runBlocking
 

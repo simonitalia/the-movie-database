@@ -20,12 +20,19 @@ fun bindTextView(textView: TextView, text: String) {
     textView.contentDescription = text
 }
 
-@BindingAdapter("bindPosterImagePath")
-fun bindPosterImage(imageView: ImageView, imagePath: String) {
+@BindingAdapter("bindPosterImagePath", "bindPosterImageContentDescription", requireAll = false)
+fun bindPosterImage(imageView: ImageView, imagePath: String, contentDescription: String?) {
     Glide.with(imageView)
         .load(Constants.PosterSize.getImagePath(Constants.PosterSize.W_342, imagePath))
         .transform(CenterCrop())
         .into(imageView)
+
+    imageView.contentDescription = if (contentDescription != null) {
+         contentDescription
+     } else {
+         val context = imageView.context
+         context.getString(R.string.description_text_movie_poster_image)
+     }
 }
 
 /**
@@ -41,12 +48,19 @@ fun bindApiStatus(progressBarView: ProgressBar, apiStatusArg1: TmdbApi.ApiStatus
  * fragment_movie_detail bindings.
  */
 
-@BindingAdapter("bindBackdropImagePath")
-fun bindBackdropImage(imageView: ImageView, imagePath: String) {
+@BindingAdapter("bindBackdropImagePath", "bindBackdropImageContentDescription", requireAll = false)
+fun bindBackdropImage(imageView: ImageView, imagePath: String, contentDescription: String?) {
     Glide.with(imageView)
         .load(Constants.BackdropSize.getImagePath(Constants.BackdropSize.W_1280, imagePath))
         .transform(CenterCrop())
         .into(imageView)
+
+    imageView.contentDescription = if (contentDescription != null) {
+        contentDescription
+    } else {
+        val context = imageView.context
+        context.getString(R.string.description_text_movie_backdrop_image)
+    }
 }
 
 @BindingAdapter("bindRating")

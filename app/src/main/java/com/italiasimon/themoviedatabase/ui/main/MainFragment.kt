@@ -10,8 +10,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.italiasimon.themoviedatabase.R
 import com.italiasimon.themoviedatabase.databinding.FragmentMainBinding
 import com.italiasimon.themoviedatabase.models.Movie
-import com.italiasimon.themoviedatabase.setDisplayHomeAsUpEnabled
-import com.italiasimon.themoviedatabase.setTitle
 import com.italiasimon.themoviedatabase.ui.adapter.MovieAdapter
 import com.italiasimon.themoviedatabase.ui.adapter.MovieRecyclerViewAdapterListener
 import com.italiasimon.themoviedatabase.ui.base.BaseFragment
