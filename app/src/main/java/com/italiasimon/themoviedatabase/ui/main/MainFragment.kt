@@ -53,25 +53,9 @@ class MainFragment : BaseFragment(), MovieRecyclerViewAdapterListener {
         binding.popularMoviesRecyclerView.adapter = this.popularMoviesAdapter
         binding.topRatedMoviesRecyclerView.adapter = this.topRatedMoviesAdapter
 
-        /*
-            * Options Menu setup
-         */
-
         binding.toolbarMainTop.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-
-                R.id.action_sort_popular_a_z -> {
-                    viewModel.sortMovies(true, MainViewModel.MovieListCategory.POPULAR)
-                    true
-                }
-
-                R.id.action_sort_popular_z_a -> {
-                    viewModel.sortMovies(false, MainViewModel.MovieListCategory.POPULAR)
-                    true
-                }
-
-                else -> false
-            }
+            onToolbarMenuItemSelected(menuItem)
+            true
         }
 
         binding.toolbarMainTop.title = getString(R.string.app_name_short)
@@ -172,6 +156,22 @@ class MainFragment : BaseFragment(), MovieRecyclerViewAdapterListener {
 
     override fun onResume() {
         super.onResume()
+    }
+
+    override fun onToolbarMenuItemSelected(menuItem: MenuItem) {
+        super.onToolbarMenuItemSelected(menuItem)
+
+        when (menuItem.itemId) {
+            R.id.action_sort_popular_a_z -> {
+                viewModel.sortMovies(true, MainViewModel.MovieListCategory.POPULAR)
+            }
+
+            R.id.action_sort_popular_z_a -> {
+                viewModel.sortMovies(false, MainViewModel.MovieListCategory.POPULAR)
+            }
+
+            else -> false
+        }
     }
 
     // pass selected movie to view model

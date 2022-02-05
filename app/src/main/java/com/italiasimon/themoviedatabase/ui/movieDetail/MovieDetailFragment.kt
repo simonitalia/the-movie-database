@@ -41,22 +41,8 @@ class MovieDetailFragment : BaseFragment() {
         binding.lifecycleOwner = this
 
         binding.toolbarMovieDetailTop.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-
-                // on favorite pressed
-                R.id.action_favorite -> {
-                    onFavoritesOptionsItemTapped()
-                    true
-                }
-
-                // on up pressed
-                android.R.id.home -> {
-                    requireActivity().onBackPressed()
-                    true
-                }
-
-                else -> false
-            }
+            onToolbarMenuItemSelected(menuItem)
+            true
         }
 
         binding.toolbarMovieDetailTop.title = viewModel.movie.title
@@ -86,6 +72,25 @@ class MovieDetailFragment : BaseFragment() {
             if (showError) {
                 onMovieSaveOrRemoveFavoriteError(view)
             }
+        }
+    }
+
+    override fun onToolbarMenuItemSelected(menuItem: MenuItem) {
+        super.onToolbarMenuItemSelected(menuItem)
+
+        when (menuItem.itemId) {
+
+            // on favorite pressed
+            R.id.action_favorite -> {
+                onFavoritesOptionsItemTapped()
+            }
+
+            // on up pressed
+            android.R.id.home -> {
+                requireActivity().onBackPressed()
+            }
+
+            else -> false
         }
     }
 
