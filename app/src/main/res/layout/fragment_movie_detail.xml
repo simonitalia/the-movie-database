@@ -28,6 +28,8 @@
                 android:layout_height="?attr/actionBarSize"
                 android:elevation="4dp"
                 app:menu="@menu/menu_movie_detail_actions"
+
+                app:navigationIcon="?attr/homeAsUpIndicator"
                 tools:title="Movie Title" />
         </com.google.android.material.appbar.AppBarLayout>
 

@@ -40,11 +40,16 @@ class MovieDetailFragment : BaseFragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
+        //toolbar onClickListeners
+
+        binding.toolbarMovieDetailTop.setNavigationOnClickListener {
+          onNavigationBackPressed()
+        }
+
         binding.toolbarMovieDetailTop.setOnMenuItemClickListener { menuItem ->
             onToolbarMenuItemSelected(menuItem)
             true
         }
-
         binding.toolbarMovieDetailTop.title = viewModel.movie.title
         return binding.root
     }
@@ -75,6 +80,10 @@ class MovieDetailFragment : BaseFragment() {
         }
     }
 
+    override fun onNavigationBackPressed() {
+        super.onNavigationBackPressed()
+    }
+
     override fun onToolbarMenuItemSelected(menuItem: MenuItem) {
         super.onToolbarMenuItemSelected(menuItem)
 
@@ -83,11 +92,6 @@ class MovieDetailFragment : BaseFragment() {
             // on favorite pressed
             R.id.action_favorite -> {
                 onFavoritesOptionsItemTapped()
-            }
-
-            // on up pressed
-            android.R.id.home -> {
-                requireActivity().onBackPressed()
             }
 
             else -> false
