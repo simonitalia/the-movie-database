@@ -53,6 +53,7 @@ class MainFragment : BaseFragment(), MovieRecyclerViewAdapterListener {
         binding.popularMoviesRecyclerView.adapter = this.popularMoviesAdapter
         binding.topRatedMoviesRecyclerView.adapter = this.topRatedMoviesAdapter
 
+        setTitle(getString(R.string.app_name_short))
         setHasOptionsMenu(true)
         return binding.root
     }
