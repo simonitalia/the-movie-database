@@ -14,6 +14,10 @@ import com.italiasimon.themoviedatabase.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+    companion object {
+        private const val TAG = "MainActivity"
+    }
+
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration : AppBarConfiguration
@@ -38,8 +42,7 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
 
-        // only show nav drawer on app start destination
-        appDrawerLister(navController)
+        appDrawerListener()
 
         NavigationUI.setupWithNavController(binding.navigationView, navController)
     }
@@ -48,8 +51,8 @@ class MainActivity : AppCompatActivity() {
         return NavigationUI.navigateUp(navController, appBarConfiguration)
     }
 
-    private fun appDrawerLister(navController: NavController) {
-        navController.addOnDestinationChangedListener { nc, nd, _ ->
+    private fun appDrawerListener() {
+        navController.addOnDestinationChangedListener { nc, nd, _ : Bundle? ->
 
             if (nd.id == nc.graph.startDestinationId) {
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)

@@ -9,8 +9,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.italiasimon.themoviedatabase.R
 import com.italiasimon.themoviedatabase.databinding.FragmentMovieDetailBinding
 import com.italiasimon.themoviedatabase.ui.base.BaseFragment
-import com.italiasimon.themoviedatabase.ui.main.MainFragmentDirections
-import com.italiasimon.themoviedatabase.ui.movieDetail.MovieDetailFragmentDirections.Companion.actionMovieDetailFragmentToFavoritesFragment
 import kotlinx.coroutines.runBlocking
 
 class MovieDetailFragment : BaseFragment() {
@@ -102,7 +100,7 @@ class MovieDetailFragment : BaseFragment() {
             }
 
             // on favorites overflow menu pressed
-            R.id.overflow_favorites -> {
+            R.id.action_navigate_to_favorites_fragment -> {
                 viewModel.showFavoritesFragment()
                 true
             }

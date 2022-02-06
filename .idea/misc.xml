@@ -30,11 +30,12 @@
         <entry key="app/src/main/res/layout/toolbar_movie_detail_top.xml" value="0.12771739130434784" />
         <entry key="app/src/main/res/menu/actions_menu.xml" value="0.21197916666666666" />
         <entry key="app/src/main/res/menu/add_favorite_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/favorites_menu.xml" value="0.1" />
         <entry key="app/src/main/res/menu/main_options.xml" value="0.10925925925925926" />
         <entry key="app/src/main/res/menu/menu_main_actions.xml" value="0.3712962962962963" />
         <entry key="app/src/main/res/menu/menu_movie_detail_actions.xml" value="0.20677083333333332" />
         <entry key="app/src/main/res/menu/movie_detail_options.xml" value="0.20677083333333332" />
-        <entry key="app/src/main/res/menu/navigation_drawer_menu.xml" value="0.38564102564102565" />
+        <entry key="app/src/main/res/menu/navigation_drawer_menu.xml" value="0.1" />
         <entry key="app/src/main/res/menu/sort_by_overflow_menu.xml" value="0.21197916666666666" />
         <entry key="app/src/main/res/menu/toolbar_top.xml" value="0.21197916666666666" />
       </map>

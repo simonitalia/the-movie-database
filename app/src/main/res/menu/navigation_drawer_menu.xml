@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <group android:id="@+id/main_fragments_group">
+    <!-- Fragment Destinations.
+        Note! If item id is set to the same fragment id in nav graph,
+        this will negate the need to use binding of activity_main > navigation_view.setNavigationItemSelectedListener {...}
+        in MainActivity.onCreate() to trigger navigation to fragment
+     -->
+
+    <group
+        android:id="@+id/main_fragments_group">
+
         <item
-            android:id="@+id/favorites_fragment"
+            android:id="@+id/favoritesFragment"
             android:icon="@drawable/ic_heart_fill_white_24dp"
-            android:title="@string/menu_favorites" />
+            android:title="@string/menu_favorites"
+            app:showAsAction="never"/>
     </group>
-
 </menu>
