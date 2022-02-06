@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar_main)
         setSupportActionBar(toolbar)
         supportActionBar.apply {
-            this?.setHomeAsUpIndicator(R.drawable.ic_menu_24dp)
+            this?.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp)
             this?.setDisplayHomeAsUpEnabled(true)
         }
     }

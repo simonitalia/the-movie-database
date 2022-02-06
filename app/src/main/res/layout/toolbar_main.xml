@@ -19,7 +19,7 @@
             app:layout_scrollFlags="scroll|enterAlways|snap"
             android:elevation="4dp"
             app:menu="@menu/sort_by_overflow_menu"
-            app:navigationIcon="@drawable/ic_menu_24dp"
+            app:navigationIcon="@drawable/ic_menu_white_24dp"
             tools:title="@string/app_name_short" />
     </com.google.android.material.appbar.AppBarLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

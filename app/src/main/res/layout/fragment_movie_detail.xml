@@ -23,7 +23,7 @@
                 android:id="@+id/movie_backdrop"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:src="@drawable/image_outline"
+                android:src="@drawable/ic_image_outline_black_24dp"
                 app:bindBackdropImagePath="@{viewModel.movie.backdropPath}"
                 app:layout_constraintBottom_toBottomOf="@+id/backdrop_guideline"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +45,7 @@
                     android:id="@+id/movie_poster"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/image_outline"
+                    android:src="@drawable/ic_image_outline_black_24dp"
                     app:bindPosterImagePath="@{viewModel.movie.posterPath}" />
 
             </androidx.cardview.widget.CardView>

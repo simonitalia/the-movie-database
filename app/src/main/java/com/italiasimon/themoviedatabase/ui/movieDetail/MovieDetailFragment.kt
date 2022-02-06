@@ -3,8 +3,6 @@ package com.italiasimon.themoviedatabase.ui.movieDetail
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
-import androidx.appcompat.app.ActionBar
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.italiasimon.themoviedatabase.R
@@ -78,9 +76,9 @@ class MovieDetailFragment : BaseFragment() {
 
         // set favorite action icon
         menu.findItem(R.id.action_favorite).icon = if (viewModel.isFavorite.value == true) {
-            requireActivity().getDrawable(R.drawable.ic_heart_fill_24dp)
+            requireActivity().getDrawable(R.drawable.ic_heart_fill_white_24dp)
         } else {
-            requireActivity().getDrawable(R.drawable.ic_heart_outline_24dp)
+            requireActivity().getDrawable(R.drawable.ic_heart_outline_white_24dp)
         }
     }
 
