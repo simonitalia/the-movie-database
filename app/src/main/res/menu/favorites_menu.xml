@@ -6,7 +6,7 @@
     <!-- Show item as action button -->
 
     <item
-        android:id="@+id/action_favorite"
+        android:id="@+id/action_add_remove_favorite"
         android:icon="@drawable/ic_heart_fill_white_24dp"
         android:title="@string/menu_favorite"
         android:contentDescription="@string/description_favorite_image"
@@ -14,7 +14,7 @@
 
     <!-- Show items in overflow button -->
     <item
-        android:id="@+id/action_favorites"
+        android:id="@+id/overflow_favorites"
         android:title="@string/menu_favorites"
         android:contentDescription="@string/description_favorite_image"
         app:showAsAction="never" />

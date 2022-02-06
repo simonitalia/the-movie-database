@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.italiasimon.themoviedatabase.R
 import com.italiasimon.themoviedatabase.databinding.FragmentMovieDetailBinding
 import com.italiasimon.themoviedatabase.ui.base.BaseFragment
+import com.italiasimon.themoviedatabase.ui.main.MainFragmentDirections
+import com.italiasimon.themoviedatabase.ui.movieDetail.MovieDetailFragmentDirections.Companion.actionMovieDetailFragmentToFavoritesFragment
 import kotlinx.coroutines.runBlocking
 
 class MovieDetailFragment : BaseFragment() {
@@ -67,15 +70,22 @@ class MovieDetailFragment : BaseFragment() {
                 onMovieSaveOrRemoveFavoriteError(view)
             }
         }
+
+        viewModel.navigationCommand.observe(viewLifecycleOwner) { showFavoritesFragment ->
+            if (showFavoritesFragment) {
+                findNavController().navigate(MovieDetailFragmentDirections.actionMovieDetailFragmentToFavoritesFragment())
+                viewModel.onShowFavoritesFragmentCompleted()
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
 
-        inflater.inflate(R.menu.actions_menu, menu)
+        inflater.inflate(R.menu.favorites_menu, menu)
 
         // set favorite action icon
-        menu.findItem(R.id.action_favorite).icon = if (viewModel.isFavorite.value == true) {
+        menu.findItem(R.id.action_add_remove_favorite).icon = if (viewModel.isFavorite.value == true) {
             requireActivity().getDrawable(R.drawable.ic_heart_fill_white_24dp)
         } else {
             requireActivity().getDrawable(R.drawable.ic_heart_outline_white_24dp)
@@ -86,8 +96,14 @@ class MovieDetailFragment : BaseFragment() {
 
         return when (item.itemId) {
             // on favorite pressed
-            R.id.action_favorite -> {
+            R.id.action_add_remove_favorite -> {
                 onFavoritesOptionsItemPressed()
+                true
+            }
+
+            // on favorites overflow menu pressed
+            R.id.overflow_favorites -> {
+                viewModel.showFavoritesFragment()
                 true
             }
 

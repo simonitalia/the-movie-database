@@ -24,10 +24,17 @@
         android:id="@+id/movieDetailFragment"
         android:name="com.italiasimon.themoviedatabase.ui.movieDetail.MovieDetailFragment"
         tools:layout="@layout/fragment_movie_detail">
+        <action
+            android:id="@+id/action_movieDetailFragment_to_favoritesFragment"
+            app:destination="@id/favoritesFragment" />
 
         <argument
             android:name="movie"
             app:argType="com.italiasimon.themoviedatabase.models.Movie"/>
     </fragment>
 
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.italiasimon.themoviedatabase.ui.favorites.FavoritesFragment"
+        tools:layout="@layout/fragment_favorites"/>
 </navigation>

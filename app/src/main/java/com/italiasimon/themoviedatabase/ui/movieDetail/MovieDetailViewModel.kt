@@ -106,4 +106,16 @@ class MovieDetailViewModel(
     fun showToastCompleted() {
         _showToast.value = false
     }
+
+    /*
+     * Navigation
+     */
+
+    fun showFavoritesFragment() {
+        _navigationCommand.value = true
+    }
+
+    fun onShowFavoritesFragmentCompleted() {
+        _navigationCommand.value = false
+    }
 }

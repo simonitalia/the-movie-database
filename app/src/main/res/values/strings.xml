@@ -45,4 +45,7 @@
     <string name="menu_favorite">Favorite</string>
     <string name="menu_favorites">Favorites</string>
 
+    <!-- Favorites Fragment -->
+    <string name="fragment_favorites_title">Favorites</string>
+
 </resources>
