@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-
+    <group android:id="@+id/main_fragments_group">
+        <item
+            android:id="@+id/favorites_fragment"
+            android:icon="@drawable/ic_heart_fill_white_24dp"
+            android:title="@string/menu_favorites" />
+    </group>
 
 </menu>
