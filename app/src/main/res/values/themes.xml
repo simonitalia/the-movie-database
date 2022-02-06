@@ -3,6 +3,10 @@
     <!-- Base application theme. -->
     <style name="Theme.TheMovieDatabase" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
+        <!-- Display system status bar with app theme. -->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/light_blue</item>
         <item name="colorPrimaryVariant">@color/dark_blue</item>
