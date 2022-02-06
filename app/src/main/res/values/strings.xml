@@ -2,10 +2,15 @@
     <string name="app_name">The Movie Database</string>
     <string name="app_name_short">Tmdb</string>
 
-    <!-- Multi-purpose -->
-    <string name="favorite">Favorite</string>
-    <string name="content_description_favorite">Favorite icon</string>
-    <string name="snackbar_action_try_again">TRY AGAIN</string>
+    <!-- Image content descriptions -->
+    <string name="description_favorite_image">Favorite image</string>
+    <string name="description_movie_poster_card">movie poster card</string>
+    <string name="description_movie_poster_image">movie poster image</string>
+    <string name="description_movie_backdrop_image">movie backdrop image</string>
+    <string name="description_nav_drawer_image">Movie reel</string>
+
+    <!-- Navigation Drawer -->
+    <string name="tmdb_website">https://themoviedb.org/</string>
 
     <!-- Main Fragment -->
     <string name="movies">Movies</string>
@@ -17,7 +22,7 @@
     <string name="upcoming_movies_title">Upcoming</string>
     <string name="upcoming_movies_subtitle">The latest movies upcoming</string>
 
-    <!-- Main Fragment Snackbar / Toast Messages -->
+    <!-- Snackbar / Toast Messages -->
     <string name="success_fetch_popular_movies">Popular movies updated</string>
     <string name="error_fetch_popular_movies">Failed to fetch popular movies</string>
     <string name="success_fetch_top_rated_movies">Top rated movies updated</string>
@@ -26,22 +31,18 @@
     <string name="error_fetch_upcoming_movies">Failed to fetch upcoming movies</string>
     <string name="movies_updated">Movies updated</string>
     <string name="error_fetch_movies">Failed to fetch movies</string>
-
-    <!-- Main Fragment Snackbar Actions -->
-    <string name="description_text_movie_poster_card">movie poster card</string>
-    <string name="description_text_movie_poster_image">movie poster image</string>
-
-    <!-- Main Fragment Options Menu -->
-    <string name="main_options_sort_popular_a_z">Sort Popular: A-Z</string>
-    <string name="main_options_sort_popular_z_a">Sort Popular: Z-A</string>
-
-    <!-- Movie Detail Fragment -->
-    <string name="description_text_movie_backdrop_image">movie backdrop image</string>
-
-    <!-- Movie Detail Fragment Options Menu -->
-    <string name="movie_added_to_favorites">Movie added to favorites</string>
-    <string name="movie_removed_from_favorites">Movie removed from favorites</string>
     <string name="error_adding_movie_to_favorites">Error adding movie to favorites</string>
     <string name="error_removing_movie_from_favorites">Error removing movie to favorites</string>
+    <string name="movie_added_to_favorites">Movie added to favorites</string>
+    <string name="movie_removed_from_favorites">Movie removed from favorites</string>
+
+    <!-- Snackbar Actions -->
+    <string name="snackbar_action_try_again">TRY AGAIN</string>
+
+    <!-- Options Menu Actions -->
+    <string name="menu_sort_popular_a_z">Sort Popular: A-Z</string>
+    <string name="menu_sort_popular_z_a">Sort Popular: Z-A</string>
+    <string name="menu_favorite">Favorite</string>
+    <string name="menu_favorites">Favorites</string>
 
 </resources>

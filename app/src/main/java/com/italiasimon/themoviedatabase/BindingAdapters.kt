@@ -31,7 +31,7 @@ fun bindPosterImage(imageView: ImageView, imagePath: String, contentDescription:
          contentDescription
      } else {
          val context = imageView.context
-         context.getString(R.string.description_text_movie_poster_image)
+         context.getString(R.string.description_movie_poster_image)
      }
 }
 
@@ -59,7 +59,7 @@ fun bindBackdropImage(imageView: ImageView, imagePath: String, contentDescriptio
         contentDescription
     } else {
         val context = imageView.context
-        context.getString(R.string.description_text_movie_backdrop_image)
+        context.getString(R.string.description_movie_backdrop_image)
     }
 }
 

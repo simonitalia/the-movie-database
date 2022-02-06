@@ -10,5 +10,8 @@
     <dimen name="layout_padding_16dp">16dp</dimen>
 
     <dimen name="corner_radius_10dp">10dp</dimen>
+    <dimen name="layout_margin_24dp">24dp</dimen>
+    <dimen name="layout_height_0dp">0dp</dimen>
+    <dimen name="layout_width_0dp">0dp</dimen>
 
 </resources>
