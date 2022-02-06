@@ -78,9 +78,9 @@ class MovieDetailFragment : BaseFragment() {
 
         // set favorite action icon
         menu.findItem(R.id.action_favorite).icon = if (viewModel.isFavorite.value == true) {
-            this.activity?.getDrawable(R.drawable.ic_heart_fill_24dp)
+            requireActivity().getDrawable(R.drawable.ic_heart_fill_24dp)
         } else {
-            this.activity?.getDrawable(R.drawable.ic_heart_outline_24dp)
+            requireActivity().getDrawable(R.drawable.ic_heart_outline_24dp)
         }
     }
 
