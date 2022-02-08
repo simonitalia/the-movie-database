@@ -76,13 +76,13 @@ class MainViewModel(
     private val repository: MoviesRepository = MoviesRepository()
 
     init {
-        getMovies(MainViewModel.MovieListCategory.ALL)
+        updateMovies(MainViewModel.MovieListCategory.ALL)
     }
 
     /*
      * Fetch movies data
      */
-    fun getMovies(category: MovieListCategory) {
+    fun updateMovies(category: MovieListCategory) {
         when (category) {
 
             /*
@@ -91,35 +91,35 @@ class MainViewModel(
              */
             MovieListCategory.ALL -> {
                 if (_popularMovies.value == null || _popularMovies.value?.isEmpty() == true) {
-                    getPopularMovies()
+                    updatePopularMovies()
                 }
 
                 if (_topRatedMovies.value == null || _topRatedMovies.value?.isEmpty() == true) {
-                    getTopRatedMovies()
+                    updateTopRatedMovies()
                 }
             }
 
             MovieListCategory.POPULAR -> {
-                getPopularMovies()
+                updatePopularMovies()
             }
 
             MovieListCategory.TOP_RATED -> {
-                getPopularMovies()
+                updatePopularMovies()
             }
 
             else -> return
         }
     }
 
-    private fun getPopularMovies(page: Int = 1) {
+    private fun updatePopularMovies(page: Int = 1) {
         _apiStatusPopular.value = TmdbApi.ApiStatus.LOADING
 
-        repository.getMovies(
+        repository.updateMovies(
             TmdbApi.Endpoint.POPULAR,
             page,
             onSuccess =  {
                 _apiStatusPopular.value = TmdbApi.ApiStatus.DONE
-                onMoviesFetched(it, TmdbApi.Endpoint.POPULAR)
+                onMoviesUpdated(it, TmdbApi.Endpoint.POPULAR)
             },
             onError = {
                 _apiStatusPopular.value = TmdbApi.ApiStatus.ERROR
@@ -128,15 +128,15 @@ class MainViewModel(
         )
     }
 
-    private fun getTopRatedMovies(page: Int = 1) {
+    private fun updateTopRatedMovies(page: Int = 1) {
         _apiStatusTopRated.value = TmdbApi.ApiStatus.LOADING
 
-        repository.getMovies(
+        repository.updateMovies(
             TmdbApi.Endpoint.TOP_RATED,
             page,
             onSuccess =  {
                 _apiStatusTopRated.value = TmdbApi.ApiStatus.DONE
-                onMoviesFetched(it, TmdbApi.Endpoint.TOP_RATED)
+                onMoviesUpdated(it, TmdbApi.Endpoint.TOP_RATED)
             },
             onError = {
                 _apiStatusTopRated.value = TmdbApi.ApiStatus.ERROR
@@ -145,7 +145,7 @@ class MainViewModel(
         )
     }
 
-    private fun onMoviesFetched(movies: List<Movie>, endpoint: TmdbApi.Endpoint) {
+    private fun onMoviesUpdated(movies: List<Movie>, endpoint: TmdbApi.Endpoint) {
 
         when (endpoint) {
             TmdbApi.Endpoint.POPULAR -> {

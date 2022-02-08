@@ -22,6 +22,32 @@ class FavoriteMoviesRepository(
     private val database: TmdbDatabase = LocalDatabase.getInstance(app)
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 
+    suspend fun getAllFavoriteMovies(
+        onSuccess: () -> Unit,
+        onFailure: () -> Unit
+    ) {
+
+        withContext(ioDispatcher) {
+
+            try {
+
+                database.favoriteMoviesDao().getAllMovies()
+
+
+            } catch (e: Exception) {
+
+
+            }
+
+        }
+
+
+
+    }
+
+
+
+
     suspend fun saveFavorite(
         movie: Movie,
         onSuccess: () -> Unit,
@@ -31,7 +57,7 @@ class FavoriteMoviesRepository(
         withContext(ioDispatcher) {
 
             try {
-                database.moviesDao().saveMovie(movie.asMovieDto())
+                database.favoriteMoviesDao().saveMovie(movie.asMovieDto())
                 onSuccess()
 
             } catch (e: Exception) {
@@ -50,7 +76,7 @@ class FavoriteMoviesRepository(
         withContext(ioDispatcher) {
 
             try {
-                database.moviesDao().deleteMovie(movie.id)
+                database.favoriteMoviesDao().deleteMovie(movie.id)
                 onSuccess()
 
             } catch (e: Exception) {
@@ -68,7 +94,7 @@ class FavoriteMoviesRepository(
 
         withContext(ioDispatcher) {
             try {
-                val movie = database.moviesDao().getMovieById(movieId)?.asMovieModel()
+                val movie = database.favoriteMoviesDao().getMovieById(movieId)?.asMovieModel()
                 val isMovieFound = (movie?.id == movieId)
                 onSuccess(isMovieFound)
 

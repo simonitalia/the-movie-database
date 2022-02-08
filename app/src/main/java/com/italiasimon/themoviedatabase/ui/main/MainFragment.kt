@@ -74,7 +74,7 @@ class MainFragment : BaseFragment(), MovieRecyclerViewAdapterListener {
         // Popular movies
         viewModel.popularMovies.observe(viewLifecycleOwner) {
             it?.let { movies ->
-                onMoviesUpdated(movies, MainViewModel.MovieListCategory.POPULAR)
+                popularMoviesAdapter.submitList(movies)
             }
         }
 
@@ -98,7 +98,7 @@ class MainFragment : BaseFragment(), MovieRecyclerViewAdapterListener {
                     Snackbar.LENGTH_INDEFINITE
                 )
                 snack.setAction(getString(R.string.snackbar_action_try_again)) {
-                    updateMovies(MainViewModel.MovieListCategory.ALL)
+                    viewModel.updateMovies((MainViewModel.MovieListCategory.ALL))
                 }
                 snack.show()
 
@@ -109,7 +109,7 @@ class MainFragment : BaseFragment(), MovieRecyclerViewAdapterListener {
         // Top rated movies
         viewModel.topRatedMovies.observe(viewLifecycleOwner) {
             it?.let { movies ->
-                onMoviesUpdated(movies, MainViewModel.MovieListCategory.TOP_RATED)
+                topRatedMoviesAdapter.submitList(movies)
             }
         }
 
@@ -133,7 +133,7 @@ class MainFragment : BaseFragment(), MovieRecyclerViewAdapterListener {
                     Snackbar.LENGTH_INDEFINITE
                 )
                 snack.setAction(getString(R.string.snackbar_action_try_again)) {
-                    updateMovies(MainViewModel.MovieListCategory.ALL)
+                    viewModel.updateMovies((MainViewModel.MovieListCategory.ALL))
                 }
                 snack.show()
 
@@ -175,18 +175,5 @@ class MainFragment : BaseFragment(), MovieRecyclerViewAdapterListener {
     // pass selected movie to view model
     override fun onItemViewPressed(movie: Movie) {
        viewModel.onSelectedMovie(movie)
-    }
-
-    private fun updateMovies(category: MainViewModel.MovieListCategory) {
-        viewModel.getMovies(category)
-    }
-
-    private fun onMoviesUpdated(movies: List<Movie>, category: MainViewModel.MovieListCategory) {
-
-        when (category) {
-            MainViewModel.MovieListCategory.POPULAR -> popularMoviesAdapter.submitList(movies)
-            MainViewModel.MovieListCategory.TOP_RATED -> topRatedMoviesAdapter.submitList(movies)
-            else -> return
-        }
     }
 }

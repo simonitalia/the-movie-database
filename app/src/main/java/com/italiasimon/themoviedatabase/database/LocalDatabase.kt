@@ -9,7 +9,7 @@ import androidx.room.*
 
 @Database(entities = [MovieDto::class], version = 1, exportSchema = false)
 abstract class TmdbDatabase: RoomDatabase() {
-    abstract fun moviesDao() : MoviesDao
+    abstract fun favoriteMoviesDao() : FavoriteMoviesDao
 }
 
 object LocalDatabase {
@@ -37,7 +37,7 @@ object LocalDatabase {
  * Data Access Object for querying tables containing movies
  */
 @Dao
-interface MoviesDao {
+interface FavoriteMoviesDao {
 
     /*
      * favorite_movies_table queries

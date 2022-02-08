@@ -8,9 +8,10 @@
         android:layout_height="match_parent"
         tools:context=".ui.favorites.FavoritesFragment">
 
-        <TextView
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/fragment_favorites_title" />
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_favorite"/>
+
     </FrameLayout>
 </layout>

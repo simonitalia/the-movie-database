@@ -32,7 +32,7 @@ class MoviesRepository {
      * Get movies list from api endpoint.
      */
 
-    fun getMovies(
+    fun updateMovies(
         endpoint: TmdbApi.Endpoint,
         page: Int = 1,
         onSuccess: (movies: List<Movie>) -> Unit,
