@@ -49,6 +49,7 @@
 
     <!-- Favorites Fragment -->
     <string name="fragment_favorites_title">Favorites</string>
+    <string name="no_favorite_movies">No favorite movies saved</string>
     <string name="error_fetch_favorite_movies">Failed to fetch favorite movies</string>
 
 </resources>

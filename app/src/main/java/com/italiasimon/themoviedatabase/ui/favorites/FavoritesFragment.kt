@@ -3,6 +3,7 @@ package com.italiasimon.themoviedatabase.ui.favorites
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.core.view.isGone
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -31,6 +32,7 @@ class FavoritesFragment : BaseFragment(), MovieRecyclerViewAdapterListener  {
             FavoritesViewModel::class.java)
     }
 
+    private lateinit var binding: FragmentFavoritesBinding
     private lateinit var adapter: FavoriteMovieAdapter
     private lateinit var listener: MovieRecyclerViewAdapterListener
 
@@ -40,7 +42,7 @@ class FavoritesFragment : BaseFragment(), MovieRecyclerViewAdapterListener  {
     ): View {
 
         // inflate layout using Data Binding, and bind fragment with this ui controller
-        val binding: FragmentFavoritesBinding = DataBindingUtil.inflate(
+        binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_favorites,
             container,
@@ -69,6 +71,7 @@ class FavoritesFragment : BaseFragment(), MovieRecyclerViewAdapterListener  {
 
         viewModel.favoriteMovies.observe(viewLifecycleOwner) { movies ->
             adapter.submitList(movies)
+            binding.noFavoriteMoviesTextView.isGone = !movies.isNullOrEmpty()
         }
 
         viewModel.showToast.observe(viewLifecycleOwner) { showToast ->
