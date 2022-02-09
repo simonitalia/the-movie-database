@@ -59,6 +59,8 @@ class FavoritesViewModel(
      * Sort favorite movies
      */
     fun sortMovies(ascending: Boolean) {
+        if (_favoriteMovies.value.isNullOrEmpty()) return
+
         if (ascending) {
             _favoriteMovies.value = _favoriteMovies.value?.sortedBy { movie ->
                 movie.title
