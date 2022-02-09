@@ -16,7 +16,7 @@ import com.italiasimon.themoviedatabase.models.Movie
  * Interface for communication between adapter and fragment classes
  */
 interface MovieRecyclerViewAdapterListener {
-    fun onItemViewPressed(movie: Movie)
+    fun onMovieItemPressed(movie: Movie)
 }
 
 class MovieAdapter(
@@ -66,7 +66,7 @@ class MovieAdapter(
 
         // pass movie item pressed back to listener
         holder.itemView.setOnClickListener {
-            listener.onItemViewPressed(item)
+            listener.onMovieItemPressed(item)
         }
     }
 }

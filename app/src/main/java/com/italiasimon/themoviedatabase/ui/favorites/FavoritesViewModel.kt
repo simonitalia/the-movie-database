@@ -37,6 +37,11 @@ class FavoritesViewModel(
     val favoriteMovies: LiveData<List<Movie>>
         get() = _favoriteMovies
 
+    // user tapped movie
+    private val _selectedFavoriteMovie = MutableLiveData<Movie?>()
+    val selectedFavoriteMovie: LiveData<Movie?>
+        get() = _selectedFavoriteMovie
+
     init {
         getFavorites()
     }
@@ -51,5 +56,17 @@ class FavoritesViewModel(
                 showSnackBarError()
             }
         )
+    }
+
+    /*
+     * Navigation
+     */
+
+    fun onSelectedFavoriteMovie(favoriteMovie: Movie) {
+        _selectedFavoriteMovie.value = favoriteMovie
+    }
+
+    fun showMovieDetailFragmentComplete() {
+        _selectedFavoriteMovie.value = null
     }
 }

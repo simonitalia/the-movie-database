@@ -58,7 +58,7 @@ class FavoriteMovieAdapter(
 
         // pass favorite item pressed back to listener
         holder.itemView.setOnClickListener {
-            listener.onItemViewPressed(item)
+            listener.onMovieItemPressed(item)
         }
     }
 }

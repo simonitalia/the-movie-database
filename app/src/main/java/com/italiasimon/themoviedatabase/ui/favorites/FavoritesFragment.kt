@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.italiasimon.themoviedatabase.R
 import com.italiasimon.themoviedatabase.databinding.FragmentFavoritesBinding
 import com.italiasimon.themoviedatabase.models.Movie
 import com.italiasimon.themoviedatabase.ui.adapter.FavoriteMovieAdapter
-import com.italiasimon.themoviedatabase.ui.adapter.MovieAdapter
 import com.italiasimon.themoviedatabase.ui.adapter.MovieRecyclerViewAdapterListener
 import com.italiasimon.themoviedatabase.ui.base.BaseFragment
 
@@ -94,10 +94,17 @@ class FavoritesFragment : BaseFragment(), MovieRecyclerViewAdapterListener  {
                 viewModel.showSnackbarErrorCompleted()
             }
         }
+
+        // trigger navigation on selected favorite movie
+        viewModel.selectedFavoriteMovie.observe(viewLifecycleOwner) {
+            it?.let { movie ->
+                findNavController().navigate(FavoritesFragmentDirections.actionFavoritesFragmentToMovieDetailFragment(movie))
+                viewModel.showMovieDetailFragmentComplete()
+            }
+        }
     }
 
-    override fun onItemViewPressed(movie: Movie) {
-        // TODO: "Not yet implemented"
+    override fun onMovieItemPressed(movie: Movie) {
+        viewModel.onSelectedFavoriteMovie(movie)
     }
-
 }

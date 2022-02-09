@@ -173,7 +173,7 @@ class MainFragment : BaseFragment(), MovieRecyclerViewAdapterListener {
     }
 
     // pass selected movie to view model
-    override fun onItemViewPressed(movie: Movie) {
+    override fun onMovieItemPressed(movie: Movie) {
        viewModel.onSelectedMovie(movie)
     }
 }
