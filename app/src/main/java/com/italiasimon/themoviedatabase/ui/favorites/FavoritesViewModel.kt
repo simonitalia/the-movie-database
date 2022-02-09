@@ -42,10 +42,6 @@ class FavoritesViewModel(
     val selectedFavoriteMovie: LiveData<Movie?>
         get() = _selectedFavoriteMovie
 
-    init {
-        getFavorites()
-    }
-
     fun getFavorites() = runBlocking {
         repository.getFavoriteMovies(
             onSuccess = { favoriteMovies ->

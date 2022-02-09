@@ -58,6 +58,10 @@ class FavoritesFragment : BaseFragment(), MovieRecyclerViewAdapterListener  {
 
         setTitle(getString(R.string.fragment_favorites_title))
         setHasOptionsMenu(true)
+
+        // Fetch favorites data
+        viewModel.getFavorites()
+
         return binding.root
     }
 
