@@ -151,6 +151,6 @@ class MovieDetailFragment : BaseFragment() {
         snack.show()
 
         //reset showSnackbarError value
-        viewModel.showSnackBarErrorCompleted()
+        viewModel.showSnackbarErrorCompleted()
     }
 }

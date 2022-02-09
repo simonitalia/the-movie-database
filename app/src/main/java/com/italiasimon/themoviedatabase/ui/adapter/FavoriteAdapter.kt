@@ -8,20 +8,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.italiasimon.themoviedatabase.R
-import com.italiasimon.themoviedatabase.databinding.ItemMovieBinding
+import com.italiasimon.themoviedatabase.databinding.ItemFavoriteBinding
 import com.italiasimon.themoviedatabase.models.Movie
 
-/**
- * RecyclerView Adapter for setting up data binding on the items in the list.
- * Interface for communication between adapter and fragment classes
- */
-interface MovieRecyclerViewAdapterListener {
-    fun onItemViewPressed(movie: Movie)
-}
-
-class MovieAdapter(
+class FavoriteMovieAdapter(
     private val listener: MovieRecyclerViewAdapterListener,
-) : ListAdapter<Movie, MovieAdapter.ViewHolder>(AdapterDiffCallback()) {
+) : ListAdapter<Movie, FavoriteMovieAdapter.ViewHolder>(AdapterDiffCallback()) {
 
     /*
      * Diff Util for managing Data changes
@@ -40,16 +32,16 @@ class MovieAdapter(
      * Bridge between Adapter class and xml ui Views
      * Setting Views with data handled by BindingAdapters
      */
-    class ViewHolder(val viewDataBinding: ItemMovieBinding): RecyclerView.ViewHolder(viewDataBinding.root) {
+    class ViewHolder(val viewDataBinding: ItemFavoriteBinding): RecyclerView.ViewHolder(viewDataBinding.root) {
         companion object {
             @LayoutRes
-            val LAYOUT = R.layout.item_movie
+            val LAYOUT = R.layout.item_favorite
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-        val withDataBinding: ItemMovieBinding = DataBindingUtil.inflate(
+        val withDataBinding: ItemFavoriteBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
             ViewHolder.LAYOUT,
             parent,
@@ -57,14 +49,14 @@ class MovieAdapter(
         return ViewHolder(withDataBinding)
     }
 
-    // bridge between movie data item and item view (ui layout)
+    // bridge between data item and item view (ui layout)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
         holder.viewDataBinding.also {
-            it.movie = item // connects to layout item data variable
+            it.favorite = item // connects to layout item data variable
         }
 
-        // pass movie item pressed back to listener
+        // pass favorite item pressed back to listener
         holder.itemView.setOnClickListener {
             listener.onItemViewPressed(item)
         }

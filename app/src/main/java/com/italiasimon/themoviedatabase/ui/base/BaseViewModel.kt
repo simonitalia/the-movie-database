@@ -20,4 +20,23 @@ abstract class BaseViewModel(
     protected val _navigationCommand = MutableLiveData<Boolean>()
     val navigationCommand: LiveData<Boolean>
         get() = _navigationCommand
+
+
+    protected fun showToast() {
+        _showToast.postValue(true)
+    }
+
+    fun showToastCompleted() {
+        _showToast.value = false
+    }
+
+    protected fun showSnackBarError() {
+        _showSnackbarError.postValue(true)
+    }
+
+    fun showSnackbarErrorCompleted() {
+        _showSnackbarError.value = false
+    }
 }
+
+

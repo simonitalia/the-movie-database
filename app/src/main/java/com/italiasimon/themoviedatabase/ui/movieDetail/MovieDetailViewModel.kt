@@ -59,7 +59,7 @@ class MovieDetailViewModel(
                     movie = movie,
                     onSuccess = {
                         _isFavorite.postValue(false)
-                        _showToast.postValue(true)
+                        showToast()
 
                         /*
                             * FOR TESTING *
@@ -70,7 +70,7 @@ class MovieDetailViewModel(
                         // _isFavorite.value = false
                     },
                     onFailure = {
-                        _showSnackbarError.postValue(true)
+                        showSnackBarError()
                     }
                 )
             }
@@ -81,7 +81,7 @@ class MovieDetailViewModel(
                     movie = movie,
                     onSuccess = {
                         _isFavorite.postValue(true)
-                        _showToast.postValue(true)
+                        showToast()
 
                         /*
                             * FOR TESTING *
@@ -92,19 +92,11 @@ class MovieDetailViewModel(
                         // _isFavorite.value = true
                     },
                     onFailure = {
-                        _showSnackbarError.postValue(true)
+                        showSnackBarError()
                     }
                 )
             }
         }
-    }
-
-    fun showSnackBarErrorCompleted() {
-        _showSnackbarError.value = false
-    }
-
-    fun showToastCompleted() {
-        _showToast.value = false
     }
 
     /*

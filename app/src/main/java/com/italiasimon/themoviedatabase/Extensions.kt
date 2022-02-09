@@ -56,18 +56,18 @@ fun Movie.asMovieDto() : MovieDto {
 }
 
 
-data class MovieDtoArrayList(val movies: ArrayList<Movie>)
-
-fun MovieDtoArrayList.asMovieDtoArray(): Array<MovieDto> {
-    return movies.map {
-        MovieDto(
-            id = it.id,
-            title = it.title,
-            overview = it.overview,
-            posterPath = it.posterPath,
-            backdropPath = it.backdropPath,
-            rating = it.rating,
-            releaseDate = it.releaseDate
-        )
-    }.toTypedArray()
-}
+//data class MoviesDtoList(val movies: List<MovieDto>)
+//
+//fun List.asMovieList(): List<Movie> {
+//    return movies.map {
+//        Movie(
+//            id = it.id,
+//            title = it.title,
+//            overview = it.overview,
+//            posterPath = it.posterPath,
+//            backdropPath = it.backdropPath,
+//            rating = it.rating,
+//            releaseDate = it.releaseDate
+//        )
+//    }
+//}

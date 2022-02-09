@@ -2,8 +2,7 @@ package com.italiasimon.themoviedatabase.repositories
 
 import android.app.Application
 import android.util.Log
-import com.italiasimon.themoviedatabase.asMovieDto
-import com.italiasimon.themoviedatabase.asMovieModel
+import com.italiasimon.themoviedatabase.*
 import com.italiasimon.themoviedatabase.database.LocalDatabase
 import com.italiasimon.themoviedatabase.database.TmdbDatabase
 import com.italiasimon.themoviedatabase.models.Movie
@@ -22,31 +21,23 @@ class FavoriteMoviesRepository(
     private val database: TmdbDatabase = LocalDatabase.getInstance(app)
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 
-    suspend fun getAllFavoriteMovies(
-        onSuccess: () -> Unit,
+    suspend fun getFavoriteMovies(
+        onSuccess: (List<Movie>) -> Unit,
         onFailure: () -> Unit
     ) {
 
         withContext(ioDispatcher) {
-
             try {
-
-                database.favoriteMoviesDao().getAllMovies()
-
+                val movies = database.favoriteMoviesDao()
+                    .getAllMovies().asMovieList()
+                onSuccess(movies)
 
             } catch (e: Exception) {
-
-
+                onFailure()
+                Log.i(TAG, ".getFavoriteMovies: Error: $e")
             }
-
         }
-
-
-
     }
-
-
-
 
     suspend fun saveFavorite(
         movie: Movie,
@@ -55,7 +46,6 @@ class FavoriteMoviesRepository(
     ) {
 
         withContext(ioDispatcher) {
-
             try {
                 database.favoriteMoviesDao().saveMovie(movie.asMovieDto())
                 onSuccess()
@@ -74,7 +64,6 @@ class FavoriteMoviesRepository(
     ) {
 
         withContext(ioDispatcher) {
-
             try {
                 database.favoriteMoviesDao().deleteMovie(movie.id)
                 onSuccess()

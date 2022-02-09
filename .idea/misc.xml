@@ -18,11 +18,11 @@
         <entry key="app/src/main/res/drawable/menu.xml" value="0.14" />
         <entry key="app/src/main/res/drawable/movie_open.xml" value="0.1735" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_favorites.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/fragment_favorites.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_movie_detail.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_movie_details.xml" value="0.11904761904761904" />
-        <entry key="app/src/main/res/layout/item_favorite.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_favorite.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_main.xml" value="0.14488348530901723" />
         <entry key="app/src/main/res/layout/item_movie.xml" value="0.18" />
         <entry key="app/src/main/res/layout/navigation_drawer_header.xml" value="0.18" />
