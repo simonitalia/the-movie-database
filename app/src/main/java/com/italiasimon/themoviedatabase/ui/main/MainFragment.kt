@@ -54,7 +54,7 @@ class MainFragment : BaseFragment(), MovieRecyclerViewAdapterListener {
         binding.topRatedMoviesRecyclerView.adapter = this.topRatedMoviesAdapter
 
         setTitle(getString(R.string.app_name_short))
-        setHasOptionsMenu(true)
+//        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -147,28 +147,6 @@ class MainFragment : BaseFragment(), MovieRecyclerViewAdapterListener {
                 findNavController().navigate(MainFragmentDirections.actionMainFragmentToMovieDetailFragment(movie))
                 viewModel.showMovieDetailFragmentComplete()
             }
-        }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.sort_by_overflow_menu, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        return when (item.itemId) {
-            R.id.action_sort_popular_a_z -> {
-                viewModel.sortMovies(true, MainViewModel.MovieListCategory.POPULAR)
-                true
-            }
-
-            R.id.action_sort_popular_z_a -> {
-                viewModel.sortMovies(false, MainViewModel.MovieListCategory.POPULAR)
-                true
-            }
-
-            else -> super.onOptionsItemSelected(item)
         }
     }
 

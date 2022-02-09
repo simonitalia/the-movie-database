@@ -38,7 +38,7 @@
         <entry key="app/src/main/res/menu/menu_movie_detail_actions.xml" value="0.20677083333333332" />
         <entry key="app/src/main/res/menu/movie_detail_options.xml" value="0.20677083333333332" />
         <entry key="app/src/main/res/menu/navigation_drawer_menu.xml" value="0.1" />
-        <entry key="app/src/main/res/menu/sort_by_overflow_menu.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/menu/sort_by_overflow_menu.xml" value="0.1" />
         <entry key="app/src/main/res/menu/toolbar_top.xml" value="0.21197916666666666" />
       </map>
     </option>

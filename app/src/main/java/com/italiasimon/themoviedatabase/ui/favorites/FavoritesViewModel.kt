@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.italiasimon.themoviedatabase.models.Movie
 import com.italiasimon.themoviedatabase.repositories.FavoriteMoviesRepository
 import com.italiasimon.themoviedatabase.ui.base.BaseViewModel
+import com.italiasimon.themoviedatabase.ui.main.MainViewModel
 import kotlinx.coroutines.runBlocking
 
 class FavoritesViewModel(
@@ -52,6 +53,22 @@ class FavoritesViewModel(
                 showSnackBarError()
             }
         )
+    }
+
+    /*
+     * Sort favorite movies
+     */
+    fun sortMovies(ascending: Boolean) {
+        if (ascending) {
+            _favoriteMovies.value = _favoriteMovies.value?.sortedBy { movie ->
+                movie.title
+            }
+
+        } else {
+            _favoriteMovies.value = _favoriteMovies.value?.sortedByDescending { movie ->
+                movie.title
+            }
+        }
     }
 
     /*

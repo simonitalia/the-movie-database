@@ -190,28 +190,6 @@ class MainViewModel(
     }
 
     /*
-     * Sort movies
-     */
-    fun sortMovies(ascending: Boolean, category: MovieListCategory) {
-
-        when (category) {
-            MovieListCategory.POPULAR -> {
-                if (ascending) {
-                    _popularMovies.value = _popularMovies.value?.sortedBy { movie ->
-                        movie.title
-                    }
-                } else {
-                    _popularMovies.value = _popularMovies.value?.sortedByDescending { movie ->
-                        movie.title
-                    }
-                }
-            }
-
-            else -> return
-        }
-    }
-
-    /*
      * Navigation
      */
 

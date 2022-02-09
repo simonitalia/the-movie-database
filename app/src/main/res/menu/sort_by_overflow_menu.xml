@@ -4,14 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- Show items in overflow menu -->
-
     <item
-        android:id="@+id/action_sort_popular_a_z"
-        android:title="@string/menu_sort_popular_a_z"
+        android:id="@+id/action_sort_favorite_movie_a_z"
+        android:title="@string/menu_sort_favorite_movie_a_z"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_sort_popular_z_a"
-        android:title="@string/menu_sort_popular_z_a"
+        android:id="@+id/action_sort_favorite_movie_z_a"
+        android:title="@string/menu_sort_favorite_movie_z_a"
         app:showAsAction="never" />
 </menu>

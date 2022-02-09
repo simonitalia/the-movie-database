@@ -1,9 +1,7 @@
 package com.italiasimon.themoviedatabase.ui.favorites
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -15,6 +13,7 @@ import com.italiasimon.themoviedatabase.models.Movie
 import com.italiasimon.themoviedatabase.ui.adapter.FavoriteMovieAdapter
 import com.italiasimon.themoviedatabase.ui.adapter.MovieRecyclerViewAdapterListener
 import com.italiasimon.themoviedatabase.ui.base.BaseFragment
+import com.italiasimon.themoviedatabase.ui.main.MainViewModel
 
 class FavoritesFragment : BaseFragment(), MovieRecyclerViewAdapterListener  {
 
@@ -110,5 +109,27 @@ class FavoritesFragment : BaseFragment(), MovieRecyclerViewAdapterListener  {
 
     override fun onMovieItemPressed(movie: Movie) {
         viewModel.onSelectedFavoriteMovie(movie)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.sort_by_overflow_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        return when (item.itemId) {
+            R.id.action_sort_favorite_movie_a_z -> {
+                viewModel.sortMovies(true)
+                true
+            }
+
+            R.id.action_sort_favorite_movie_z_a -> {
+                viewModel.sortMovies(false)
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

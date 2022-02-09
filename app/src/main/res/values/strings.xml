@@ -42,6 +42,8 @@
     <!-- Options Menu Actions -->
     <string name="menu_sort_popular_a_z">Sort Popular: A-Z</string>
     <string name="menu_sort_popular_z_a">Sort Popular: Z-A</string>
+    <string name="menu_sort_favorite_movie_a_z">Sort: A-Z</string>
+    <string name="menu_sort_favorite_movie_z_a">Sort: Z-A</string>
     <string name="menu_favorite">Favorite</string>
     <string name="menu_favorites">Favorites</string>
 
