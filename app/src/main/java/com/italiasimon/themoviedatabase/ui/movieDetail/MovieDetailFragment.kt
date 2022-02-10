@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.italiasimon.themoviedatabase.R
 import com.italiasimon.themoviedatabase.databinding.FragmentMovieDetailBinding
 import com.italiasimon.themoviedatabase.ui.base.BaseFragment
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 class MovieDetailFragment : BaseFragment() {
@@ -41,6 +43,14 @@ class MovieDetailFragment : BaseFragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
+        binding.addRemoveFavoriteFab.setOnClickListener {
+            onAddOrRemoveFavoritesPressed()
+        }
+
+        viewModel.viewModelScope.launch {
+            viewModel.getMovieById()
+        }
+
         setTitle(viewModel.movie.title)
         setHasOptionsMenu(true)
         return binding.root
@@ -53,13 +63,13 @@ class MovieDetailFragment : BaseFragment() {
             * Observe view model live data changes
          */
 
-        viewModel.isFavorite.observe(viewLifecycleOwner) {
-            requireActivity().invalidateOptionsMenu()
+        viewModel.isFavorite.observe(viewLifecycleOwner) { isFavorite ->
+            setFavoritesImage(isFavorite)
         }
 
         viewModel.showToast.observe(viewLifecycleOwner) { showToast ->
             if (showToast) {
-                onMovieFavoriteUpdated()
+                showToast()
             }
         }
 
@@ -95,7 +105,7 @@ class MovieDetailFragment : BaseFragment() {
         return when (item.itemId) {
             // on favorite pressed
             R.id.action_add_remove_favorite -> {
-                onFavoritesOptionsItemPressed()
+                onAddOrRemoveFavoritesPressed()
                 true
             }
 
@@ -109,15 +119,29 @@ class MovieDetailFragment : BaseFragment() {
         }
     }
 
-    private fun onFavoritesOptionsItemPressed() = runBlocking {
+    private fun onAddOrRemoveFavoritesPressed() = runBlocking {
         viewModel.updateFavorites()
     }
 
-    private fun onMovieFavoriteUpdated() {
+    private fun setFavoritesImage(isFavorite: Boolean?) {
 
-        //show toast
+        //recreate options menu to refresh favorites toolbar icon
+        requireActivity().invalidateOptionsMenu()
+
+        //set fab icon
+        if (isFavorite == true) {
+            binding.addRemoveFavoriteFab.setImageDrawable(context?.getDrawable(R.drawable.ic_heart_fill_white_24dp))
+
+        } else {
+            binding.addRemoveFavoriteFab.setImageDrawable(context?.getDrawable(R.drawable.ic_heart_outline_white_24dp))
+        }
+    }
+
+    private fun showToast() {
+
         val message = if (viewModel.isFavorite.value == true) {
             getString(R.string.movie_added_to_favorites)
+
         } else {
             getString(R.string.movie_removed_from_favorites)
         }
@@ -146,7 +170,7 @@ class MovieDetailFragment : BaseFragment() {
             Snackbar.LENGTH_LONG
         )
         snack.setAction(getString(R.string.snackbar_action_try_again)) {
-            onFavoritesOptionsItemPressed()
+            onAddOrRemoveFavoritesPressed()
         }
         snack.show()
 

@@ -19,6 +19,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/add_remove_favorite_fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="@dimen/layout_margin_16dp"
+                android:clickable="true"
+                app:backgroundTint="@color/dark_blue"
+                app:tint="@color/white"
+                app:srcCompat="@drawable/ic_heart_fill_white_24dp" />
+
             <ImageView
                 android:id="@+id/movie_backdrop"
                 android:layout_width="0dp"

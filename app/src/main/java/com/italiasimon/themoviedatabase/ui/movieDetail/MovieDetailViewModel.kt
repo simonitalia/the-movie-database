@@ -35,18 +35,14 @@ class MovieDetailViewModel(
 
     private val repository: FavoriteMoviesRepository = FavoriteMoviesRepository(app)
 
-    init  {
-        // check if movie is a favorite
-        viewModelScope.launch {
-
-            repository.getMovieById(
-                movie.id,
-                onSuccess = { isFavorite ->
-                    _isFavorite.postValue(isFavorite)
-                },
-                onFailure = {}
-            )
-        }
+    suspend fun getMovieById() {
+        repository.getMovieById(
+            movie.id,
+            onSuccess = { isFavorite ->
+                _isFavorite.postValue(isFavorite)
+            },
+            onFailure = {}
+        )
     }
 
     suspend fun updateFavorites() {

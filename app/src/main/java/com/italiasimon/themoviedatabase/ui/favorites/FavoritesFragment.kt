@@ -75,15 +75,15 @@ class FavoritesFragment : BaseFragment(), MovieRecyclerViewAdapterListener  {
         }
 
         viewModel.showToast.observe(viewLifecycleOwner) { showToast ->
-            if (showToast) {
-                if (showToast) {
-                    Toast.makeText(
-                        this.context,
-                        "${viewModel.favoriteMovies.value?.size} favorite movies",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    viewModel.showToastCompleted()
-                }
+
+            // show toast only if there are movies
+            if (showToast && !viewModel.favoriteMovies.value.isNullOrEmpty()) {
+                Toast.makeText(
+                    this.context,
+                    "${viewModel.favoriteMovies.value?.size} favorite movie(s)",
+                    Toast.LENGTH_SHORT
+                ).show()
+                viewModel.showToastCompleted()
             }
         }
 

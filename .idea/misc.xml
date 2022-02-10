@@ -20,7 +20,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_favorites.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_main.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_movie_detail.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_movie_detail.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_movie_details.xml" value="0.11904761904761904" />
         <entry key="app/src/main/res/layout/item_favorite.xml" value="0.24378109452736318" />
         <entry key="app/src/main/res/layout/item_main.xml" value="0.14488348530901723" />
