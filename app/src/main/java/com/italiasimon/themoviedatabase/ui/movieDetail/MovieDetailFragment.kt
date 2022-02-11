@@ -3,6 +3,8 @@ package com.italiasimon.themoviedatabase.ui.movieDetail
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.constraintlayout.motion.widget.MotionLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
@@ -43,8 +45,14 @@ class MovieDetailFragment : BaseFragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        binding.addRemoveFavoriteFab.setOnClickListener {
-            onAddOrRemoveFavoritesPressed()
+        // bind addRemoveFavoriteFab using setOnTouchListener to
+        // intercept motion layout events
+        binding.addRemoveFavoriteFab.setOnTouchListener { v, event ->
+            if (event.action == MotionEvent.ACTION_UP) {
+                onAddOrRemoveFavoritesPressed()
+                true
+            }
+            false
         }
 
         viewModel.viewModelScope.launch {
@@ -140,10 +148,10 @@ class MovieDetailFragment : BaseFragment() {
     private fun showToast() {
 
         val message = if (viewModel.isFavorite.value == true) {
-            getString(R.string.movie_added_to_favorites)
+            getString(R.string.added_to_favorites)
 
         } else {
-            getString(R.string.movie_removed_from_favorites)
+            getString(R.string.removed_from_favorites)
         }
 
         Toast.makeText(

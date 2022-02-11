@@ -35,6 +35,8 @@
     <string name="error_removing_movie_from_favorites">Error removing movie to favorites</string>
     <string name="movie_added_to_favorites">Movie added to favorites</string>
     <string name="movie_removed_from_favorites">Movie removed from favorites</string>
+    <string name="added_to_favorites">Added to favorites</string>
+    <string name="removed_from_favorites">Removed from favorites</string>
 
     <!-- Snackbar Actions -->
     <string name="snackbar_action_try_again">TRY AGAIN</string>
