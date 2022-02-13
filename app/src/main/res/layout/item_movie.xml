@@ -11,8 +11,8 @@
     </data>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="192dp"
-        android:layout_height="258dp"
+        android:layout_width="@dimen/widget_cardView_width_192dp"
+        android:layout_height="@dimen/widget_cardView_height_258dp"
         android:layout_marginEnd="@dimen/layout_margin_8dp"
         app:cardCornerRadius="@dimen/corner_radius_10dp">
 
@@ -21,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/ic_image_outline_black_24dp"
+            android:contentDescription="@string/description_movie_poster_image"
             app:bindPosterImagePath="@{movie.posterPath}"/>
     </androidx.cardview.widget.CardView>
 </layout>

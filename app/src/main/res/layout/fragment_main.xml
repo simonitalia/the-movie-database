@@ -47,7 +47,7 @@
                         android:layout_marginTop="@dimen/layout_margin_16dp"
                         android:layout_marginEnd="@dimen/layout_margin_16dp"
                         android:text="@string/popular_movies_title"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/text_size_18sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -84,7 +84,7 @@
                         android:layout_marginTop="@dimen/layout_margin_16dp"
                         android:layout_marginEnd="@dimen/layout_margin_16dp"
                         android:text="@string/top_rated_movies_title"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/text_size_18sp"
                         android:textStyle="bold" />
 
                     <TextView

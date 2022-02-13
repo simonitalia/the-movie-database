@@ -2,16 +2,39 @@
 <resources>
 
     <!-- Layout Margin -->
-    <dimen name="layout_margin_16dp">16dp</dimen>
+    <dimen name="layout_margin_0dp">0dp</dimen>
     <dimen name="layout_margin_8dp">8dp</dimen>
-    <dimen name="layout_margin_0dp">16dp</dimen>
+    <dimen name="layout_margin_16dp">16dp</dimen>
+    <dimen name="layout_margin_24dp">24dp</dimen>
+    <dimen name="layout_margin_40dp">40dp</dimen>
 
     <!-- Layout Padding -->
     <dimen name="layout_padding_16dp">16dp</dimen>
 
-    <dimen name="corner_radius_10dp">10dp</dimen>
-    <dimen name="layout_margin_24dp">24dp</dimen>
+    <!-- Layout Height Dimensions -->
     <dimen name="layout_height_0dp">0dp</dimen>
+    <dimen name="layout_height_1dp">1dp</dimen>
+    <dimen name="layout_height_50dp">50dp</dimen>
+    <dimen name="layout_size_60dp">60dp</dimen>
+
+    <!-- Layout Width Dimensions -->
     <dimen name="layout_width_0dp">0dp</dimen>
+    <dimen name="layout_width_50dp">50dp</dimen>
+
+    <!-- Widget Dimensions -->
+    <dimen name="widget_cardView_width_192dp">192dp</dimen>
+    <dimen name="widget_cardView_height_258dp">258dp</dimen>
+
+    <!-- Text Size -->
+    <dimen name="text_size_12sp">12sp</dimen>
+    <dimen name="text_size_14sp">14sp</dimen>
+    <dimen name="text_size_18sp">18sp</dimen>
+
+    <!-- Corner Radius -->
+    <dimen name="corner_radius_4dp">4dp</dimen>
+    <dimen name="corner_radius_10dp">10dp</dimen>
+
+    <!-- Misc. -->
+    <dimen name="toolbar_elevation_4dp">4dp</dimen>
 
 </resources>

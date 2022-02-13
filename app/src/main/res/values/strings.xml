@@ -9,6 +9,11 @@
     <string name="description_movie_backdrop_image">movie backdrop image</string>
     <string name="description_nav_drawer_image">Movie reel</string>
 
+    <!-- Tools Text -->
+    <string name="tools_text_title">Title</string>
+    <string name="tools_text_release_date">Release Date</string>
+    <string name="tools_text_overview">Overview</string>
+
     <!-- Navigation Drawer -->
     <string name="tmdb_website">https://themoviedb.org/</string>
 
@@ -53,5 +58,6 @@
     <string name="fragment_favorites_title">Favorites</string>
     <string name="no_favorite_movies">No favorite movies saved</string>
     <string name="error_fetch_favorite_movies">Failed to fetch favorite movies</string>
+    <string name="add_remove_fab_description">Add or remove favorite fab</string>
 
 </resources>

@@ -28,8 +28,8 @@
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="@dimen/layout_width_50dp"
+                    android:layout_height="@dimen/layout_height_50dp"
                     app:cardCornerRadius="@dimen/corner_radius_10dp">
 
                     <ImageView
@@ -37,6 +37,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         app:bindPosterImagePath="@{favorite.posterPath}"
+                        android:contentDescription="@string/description_movie_poster_image"
                         tools:src="@drawable/ic_image_outline_black_24dp" />
                 </androidx.cardview.widget.CardView>
 
@@ -54,7 +55,7 @@
                         android:maxLines="1"
                         android:textAppearance="?attr/textAppearanceSubtitle1"
                         app:bindText="@{favorite.title}"
-                        tools:text="Title" />
+                        tools:text="@string/tools_text_title" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -62,7 +63,7 @@
             <View
                 android:id="@+id/divider"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="@dimen/layout_height_1dp"
                 android:background="?android:attr/listDivider" />
 
         </LinearLayout>
