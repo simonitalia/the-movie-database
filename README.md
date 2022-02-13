@@ -117,18 +117,16 @@ roomVersion = '2.4.1'
 
 
 ## Built Using
-
 * [Android Studio](https://developer.android.com/studio) - Default IDE used to build android apps
 * [Kotlin](https://kotlinlang.org/) - Default language used to build this project
 
 
 ## Deployment information
-
 - <strong>Deployment Target (android API / Version):</strong> 31 / Android 12 (S)
 
 ## App Versions
-- February, 2022 (version 1)
-
+- February, 2022 (Major version 1)
+- February, 2022 (Minor version 1.1)
 
 ## License
 Please review the following [license agreement](https://github.com/simonitalia/the-movie-database/blob/main/LICENSE)
