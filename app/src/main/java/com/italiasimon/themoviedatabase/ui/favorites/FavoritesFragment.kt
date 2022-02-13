@@ -14,7 +14,6 @@ import com.italiasimon.themoviedatabase.models.Movie
 import com.italiasimon.themoviedatabase.ui.adapter.FavoriteMovieAdapter
 import com.italiasimon.themoviedatabase.ui.adapter.MovieRecyclerViewAdapterListener
 import com.italiasimon.themoviedatabase.ui.base.BaseFragment
-import com.italiasimon.themoviedatabase.ui.main.MainViewModel
 
 class FavoritesFragment : BaseFragment(), MovieRecyclerViewAdapterListener  {
 

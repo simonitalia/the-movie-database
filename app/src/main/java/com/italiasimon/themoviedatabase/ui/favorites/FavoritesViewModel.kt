@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.italiasimon.themoviedatabase.models.Movie
 import com.italiasimon.themoviedatabase.repositories.FavoriteMoviesRepository
 import com.italiasimon.themoviedatabase.ui.base.BaseViewModel
-import com.italiasimon.themoviedatabase.ui.main.MainViewModel
 import kotlinx.coroutines.runBlocking
 
 class FavoritesViewModel(

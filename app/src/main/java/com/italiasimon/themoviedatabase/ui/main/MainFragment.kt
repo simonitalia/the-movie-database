@@ -3,10 +3,8 @@ package com.italiasimon.themoviedatabase.ui.main
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.italiasimon.themoviedatabase.R
