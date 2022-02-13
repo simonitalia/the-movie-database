@@ -3,7 +3,9 @@ package com.italiasimon.themoviedatabase.ui.main
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
@@ -16,14 +18,7 @@ import com.italiasimon.themoviedatabase.ui.base.BaseFragment
 
 class MainFragment : BaseFragment(), MovieRecyclerViewAdapterListener {
 
-    // lazily initialize ViewModel using .Factory to pass in parameters
-    private val viewModel: MainViewModel by lazy {
-        val activity = requireNotNull(this.activity)  {
-            "You can only access the viewModel after onViewCreated()"
-        }
-
-        ViewModelProvider(this, MainViewModel.Factory(activity.application)).get(MainViewModel::class.java)
-    }
+    private val viewModel: MainViewModel by activityViewModels()
 
     // Adapter properties
     private lateinit var popularMoviesAdapter: MovieAdapter

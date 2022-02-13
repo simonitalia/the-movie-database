@@ -1,7 +1,7 @@
 package com.italiasimon.themoviedatabase.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
@@ -11,12 +11,16 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.italiasimon.themoviedatabase.R
 import com.italiasimon.themoviedatabase.databinding.ActivityMainBinding
+import com.italiasimon.themoviedatabase.ui.base.BaseActivity
+import com.italiasimon.themoviedatabase.ui.main.MainViewModel
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     companion object {
         private const val TAG = "MainActivity"
     }
+
+    private val viewModel: MainViewModel by viewModels()
 
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navController: NavController
@@ -69,6 +73,13 @@ class MainActivity : AppCompatActivity() {
         supportActionBar.apply {
             this?.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp)
             this?.setDisplayHomeAsUpEnabled(true)
+        }
+    }
+
+    override fun onDeviceShakeDetected() {
+        super.onDeviceShakeDetected()
+        viewModel.popularMovies.value?.random()?.let {
+            viewModel.onSelectedMovie(it)
         }
     }
 }
