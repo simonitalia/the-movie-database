@@ -6,7 +6,7 @@ import retrofit2.http.Query
 
 interface TmdbApi {
     companion object {
-        private const val API_KEY = "592e57a23d9bb7229dbf9e08f25818b4"
+        private const val API_KEY = "YOUR_V3_API_KEY_HERE"
     }
 
     enum class ApiStatus {
